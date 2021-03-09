@@ -11,8 +11,9 @@
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="Price" [(ngModel)]="product.price">
+        <input matInput placeholder="Price" (keypress)="onlyNumbers($event)" [(ngModel)]="product.price">
     </mat-form-field>
+
 </div>
 
 <div mat-dialog-actions>

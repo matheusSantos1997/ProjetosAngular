@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Product } from '../model/Product';
 
 @Injectable({
@@ -25,15 +24,18 @@ constructor(private http: HttpClient) { }
            return this.http.get(`${this.URL}/getByName/Name/${id}`,
            {responseType: 'text'});
      }
-
-     insertProduct(product: Product): Observable<Product> {
-         return this.http.post<Product>(`${this.URL}`, product);
+     
+     // chamando a rota inserir produto da api
+     insertProduct(p: Product): Observable<Product> {
+         return this.http.post<Product>(`${this.URL}`, p);
      }
-
+     
+     // chamando a rota deletar produto da api
      deleteProduct(p: Product) {
           return this.http.delete(`${this.URL}/${p.id}`);
      }
-
+     
+     // chamando a rota editar produt da api
      editProduct(p: Product): Observable<Product> {
          return this.http.put<Product>(`${this.URL}/${p.id}`, p);
      }

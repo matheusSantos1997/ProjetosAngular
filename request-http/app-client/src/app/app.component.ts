@@ -85,6 +85,19 @@ export class AppComponent implements OnInit{
    });
   }
 
+  onlyNumbers(e: any) {
+   let charCode = e.charCode ? e.charCode : e.keyCode;
+   // charCode 8 = backspace   
+   // charCode 9 = tab
+   if (charCode != 8 && charCode != 9) {
+       // charCode 48 equivale a 0   
+       // charCode 57 equivale a 9
+       if (charCode < 48 || charCode > 57) {
+           return false;
+       }
+   }
+  }
+
   saveProduct() {
 
       this.productsService.insertProduct(this.formGroup.value).subscribe(
@@ -107,11 +120,14 @@ export class AppComponent implements OnInit{
     
     // excluindo os produtos
     deleteProduct(p: Product) {
+         // chamando o serviço de deletar produto
          this.productsService.deleteProduct(p).subscribe(
              (res) => {
+                // vai procurar o indice do produto que foi deletado
                 let i = this.productsToDelete.findIndex(prod => p.id == prod.id);
+                // se encontrou um id para deletar
                 if (i >= 0) {
-                   this.productsToDelete.splice(i, 1);
+                   this.productsToDelete.splice(i, 1); // apaga o indice a partir de um elemento
                 }
              }, (err) => {
                 console.error(err);
@@ -149,10 +165,7 @@ export class AppComponent implements OnInit{
                      )
               }
            }
-        )
-        
-        
-
+        );
     }
 
 }
