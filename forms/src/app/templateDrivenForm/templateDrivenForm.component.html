@@ -1,3 +1,94 @@
-<p>
-  templateDrivenForm works!
-</p>
+<div layout="column" layout-fill>
+  <div align="center" layout="row" layout-align="center center">
+
+    <mat-card class="info-card mat-elevation-z8" flex="80" style="margin-top: 60px;width: 800px;;">
+
+      <mat-card-title></mat-card-title>
+      <mat-card-subtitle>
+      </mat-card-subtitle>
+
+      <mat-card-content fxLayout="column" fxLayoutAlign="stretch">
+        
+        <form fxLayout="column" fxLayoutAlign="start stretch" #formClient="ngForm" (ngSubmit)="formSubmit()">
+
+          <div fxFlex="100"  fxLayout="row" fxLayoutAlign="space-between  start">
+            <mat-form-field fxFlex="45" >  
+              <input matInput type="text" class="form-control" value="" placeholder="First Name" autocomplete="off" 
+              [(ngModel)]="client.firstName" name="firstName">
+            </mat-form-field> 
+            <mat-form-field fxFlex="45">
+              <input matInput type="text" class="form-control" value="" placeholder="Last Name" autocomplete="off"
+              [(ngModel)]="client.lastName" name="lastName">
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="100"  fxLayout="row" fxLayoutAlign="space-between  start">
+
+            <mat-form-field fxFlex="45">
+              <input matInput  [matDatepicker]="dtbirth" placeholder="Date of Birth" autocomplete="off"
+              [(ngModel)]="client.birth" name="birth">
+              <mat-datepicker-toggle matSuffix [for]="dtbirth"></mat-datepicker-toggle>
+              <mat-datepicker #dtbirth></mat-datepicker>
+            </mat-form-field>
+
+            <mat-radio-group  fxFlex="45" fxLayout="column" fxLayoutAlign="space-between start" 
+            [(ngModel)]="client.gender" name="gender">
+              <mat-radio-button value="Male" checked>Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>      
+
+          </div>          
+
+          <div fxFlex="100" fxLayoutAlign="start">
+              <h4>Address:</h4>
+          </div>
+          <div fxFlex="100"  fxLayout="row" fxLayoutAlign="space-between start">
+            <mat-form-field fxFlex="40" >  
+              <input matInput type="text" 
+                class="form-control" value="" placeholder="Street" autocomplete="off" 
+                [(ngModel)]="client.street" name="street">
+            </mat-form-field> 
+            <mat-form-field fxFlex="30">
+              <input matInput type="text"  
+                class="form-control" value="" placeholder="City" autocomplete="off" 
+                [(ngModel)]="client.city" name="city">
+            </mat-form-field>
+ 
+            <mat-form-field fxFlex="20">
+              <mat-select placeholder="State" [(ngModel)]="client.state" name="state">
+                <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="100" fxLayoutAlign="start">
+            <h4>Telephones: </h4>
+          </div> 
+
+          <div fxFlex="100"  fxLayout="row wrap" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+            <mat-form-field fxFlex="45" >
+              <input matInput type="text"  
+                class="form-control" value="" placeholder="Telephone 1 " autocomplete="off" 
+                [(ngModel)]="client.phone1" name="phone1">
+            </mat-form-field>
+            <mat-form-field fxFlex="45" >  
+              <input matInput type="text" 
+                class="form-control" value="" placeholder="Telephone 2" autocomplete="off"
+                [(ngModel)]="client.phone2" name="phone2">
+            </mat-form-field>
+          </div>
+
+          <button mat-button color="primary" type="submit" >
+            <mat-icon>done</mat-icon>Submit
+          </button>
+          
+        </form>
+
+      </mat-card-content>
+      <mat-card-footer>
+      </mat-card-footer>
+    </mat-card>
+
+
+  </div>
+</div>

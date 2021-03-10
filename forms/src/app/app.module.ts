@@ -45,11 +45,15 @@ import { MatTreeModule } from '@angular/material/tree';
 // imports components
 import { AppComponent } from './app.component';
 import { TemplateDrivenFormComponent } from './templateDrivenForm/templateDrivenForm.component';
+import { FormNativeValidationComponent } from './form-native-validation/form-native-validation.component';
+import { FormValidationComponent } from './form-validation/form-validation.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [			
     AppComponent,
-      TemplateDrivenFormComponent
+      TemplateDrivenFormComponent,
+      FormNativeValidationComponent,
+      FormValidationComponent
    ],
   imports: [
     BrowserModule,
