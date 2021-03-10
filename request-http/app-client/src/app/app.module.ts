@@ -9,14 +9,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { DialogEditoProductComponent } from './dialog-edito-product/dialog-edito-product.component';
-import { TestComponent } from './test/test.component';
 
 
 @NgModule({
   declarations: [		
     AppComponent,
-      DialogEditoProductComponent,
-      TestComponent
+      DialogEditoProductComponent
    ],
   imports: [
     BrowserModule,

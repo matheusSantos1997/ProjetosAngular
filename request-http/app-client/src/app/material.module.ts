@@ -35,7 +35,7 @@ import { MatAutocompleteModule,
          MatTabsModule,
          MatToolbarModule,
          MatTooltipModule,
-         MatTreeModule } from '@angular/material';
+         MatTreeModule } from '@angular/material'; 
  
 @NgModule({
   imports: [],

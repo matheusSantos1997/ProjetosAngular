@@ -35,7 +35,7 @@ constructor(private http: HttpClient) { }
           return this.http.delete(`${this.URL}/${p.id}`);
      }
      
-     // chamando a rota editar produt da api
+     // chamando a rota editar produto da api
      editProduct(p: Product): Observable<Product> {
          return this.http.put<Product>(`${this.URL}/${p.id}`, p);
      }

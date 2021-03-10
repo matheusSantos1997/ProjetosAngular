@@ -142,10 +142,12 @@ export class AppComponent implements OnInit{
     }
 
     editProduct(p: Product) {
-        // vai criar uma nova referencia do produto
-        let newProduct: Product = Object.assign({}, p);
+        // vai criar uma nova referencia do produto editado
+        const newProduct: Product = Object.assign({}, p);
 
-        let dialogRef = this.dialog.open(DialogEditoProductComponent, { width: '400px', data: newProduct });
+        const dialogRef = this.dialog.open(DialogEditoProductComponent, { width: '400px', data: newProduct });
+
+        // apos fechar quando o dialog e salvar o produto alterado
         dialogRef.afterClosed().subscribe(
            (res: Product) => {
               // console.log(res);
@@ -154,7 +156,9 @@ export class AppComponent implements OnInit{
                  this.productsService.editProduct(res)
                      .subscribe(
                         (resp) => {
+                            // vai procurar o produto que está sendo editado a partir do indice
                             let i = this.productsToEdit.findIndex(prod => p.id == prod.id);
+                            // se existir um indice
                             if (i >= 0) {
                                this.productsToEdit[i] = resp; 
                             }
