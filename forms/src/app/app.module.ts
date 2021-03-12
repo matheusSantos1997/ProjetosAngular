@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 // imports material 
@@ -47,13 +48,21 @@ import { AppComponent } from './app.component';
 import { TemplateDrivenFormComponent } from './templateDrivenForm/templateDrivenForm.component';
 import { FormNativeValidationComponent } from './form-native-validation/form-native-validation.component';
 import { FormValidationComponent } from './form-validation/form-validation.component';
+import { FormControlComponent } from './form-control/form-control.component';
+import { FormGroupComponent } from './form-group/form-group.component';
+import { FormArrayComponent } from './form-array/form-array.component';
+import { ReactiveFormsValidationComponent } from './reactive-forms-validation/reactive-forms-validation.component';
 
 @NgModule({
-  declarations: [			
+  declarations: [							
     AppComponent,
       TemplateDrivenFormComponent,
       FormNativeValidationComponent,
-      FormValidationComponent
+      FormValidationComponent,
+      FormControlComponent,
+      FormGroupComponent,
+      FormArrayComponent,
+      ReactiveFormsValidationComponent
    ],
   imports: [
     BrowserModule,
@@ -95,7 +104,8 @@ import { FormValidationComponent } from './form-validation/form-validation.compo
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
