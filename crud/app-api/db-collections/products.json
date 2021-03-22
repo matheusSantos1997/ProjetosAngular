@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "6058b485914c3d33b0922274"
+  },
+  "departments": [
+    {
+      "$oid": "6058b135aef11731c8b9d0ea"
+    }
+  ],
+  "name": "dep test",
+  "price": 10,
+  "stock": 3
+}]

@@ -8,7 +8,7 @@ mongoose.connection.on('error', (error) => {
 });
 
 require('./models/department');
-// require('./product');
+require('./models/product');
 
 const app = require('./app');
 app.set('port', 3000);
