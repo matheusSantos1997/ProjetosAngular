@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable } from 'rxjs';
-import { delay, map, tap } from 'rxjs/operators';
+import { delay, filter, map, tap } from 'rxjs/operators';
 import { Department } from '../models/Department';
 import { Product } from '../models/Product';
 import { DepartmentService } from './department.service';
@@ -11,7 +11,7 @@ import { DepartmentService } from './department.service';
 })
 export class ProductService {
 
-    url: string = 'http://localhost:3000/products';
+    url: string = 'http://localhost:3000/products'; // consumindo a api da endpoint de produtos
 
     private productsSubjects$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(null);
 
@@ -22,16 +22,18 @@ export class ProductService {
         private departmentService: DepartmentService) { }
 
     getProducts(): Observable<Product[]> {
+        // se nao foi carregado
         if (!this.loaded) {
+          
           combineLatest(
-            this.http.get<Product[]>(this.url),
-            this.departmentService.getDepartments()
+            this.http.get<Product[]>(this.url), // retorna o array de produtos
+            this.departmentService.getDepartments() // retorna o array de departamentos
         ).pipe(
             tap(([products, departments]) => console.log(products, departments)),
-            delay(1000),
-            map(([products, departments]) => {
-                for(let p of products) {
-                    let ids = (p.departments as string[]);
+            filter(([products, departments]) => products != null && departments != null),
+            map(([products, departments]) => { // mapeia os ids para os departamentos
+                for(let p of products) { // para cada produto, faça um mapeamento
+                    let ids = (p.departments as string[]); // pega os ids dos departamentos 
                     p.departments = ids.map((id) => departments.find(dep => dep._id == id)); // array de departments cujo _id == id
                    
                 }
@@ -47,7 +49,8 @@ export class ProductService {
         }
         return this.productsSubjects$.asObservable();
     }
-
+    
+    // adiciona um novo produto
     postProduct(prod: Product): Observable<Product> {
         let departments = (prod.departments as Department[]).map(d => d._id); // mapeando um array de departments para um array de ids
         return this.http.post<Product>(this.url, {...prod, departments})

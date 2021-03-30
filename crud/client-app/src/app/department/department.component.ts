@@ -23,6 +23,7 @@ export class DepartmentComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // listando os departamentos
     this.departmentService.getDepartments()
         .pipe(takeUntil(this.unsubscribe$))
         .subscribe(
@@ -38,6 +39,7 @@ export class DepartmentComponent implements OnInit {
     this.unsubscribe$.next();
   }
 
+  // insere ou atualiza o departamento
   save() {
      // se estiver no modo ediçao
      if (this.depEdit) {
@@ -51,11 +53,11 @@ export class DepartmentComponent implements OnInit {
                                  }
                               );
      } else {
+        // salva um novo departamento
         this.departmentService.addDepartment({name:this.depName})
         .subscribe(
           (dep) => {
              console.log(dep);
-             this.clearFields();
              this.notify('inserted success!');
           }, (err) => {
              this.notify('Error!');
@@ -63,6 +65,7 @@ export class DepartmentComponent implements OnInit {
           }
        );
      }
+     this.clearFields();
   }
 
   clearFields() {
@@ -71,25 +74,29 @@ export class DepartmentComponent implements OnInit {
   }
 
   cancel() {
-
+     this.clearFields();
   }
-
+  
+  // carrega a ediçao do departamento
   editDep(dep: Department) {
      this.depName = dep.name;
      this.depEdit = dep;
   }
 
+  // deleta o departamento
   deleteDep(dep: Department) {
       this.departmentService.deleteDepartment(dep)
           .subscribe(
              () => {
                this.notify('Removed!')
              }, (err) => {
-                console.error(err);
+                this.notify(err.error.msg);
+                // console.log(err);
              }
           )
   }
 
+   // funçao para gerar uma mensagem de notificaçao com o snackBar
   notify(msg: string) {
        this.snackBar.open(msg, 'Ok', {duration: 3000});
   }
