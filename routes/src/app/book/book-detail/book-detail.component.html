@@ -1,0 +1,23 @@
+<div fxFlex fxLayout="row" fxLayoutAlign="center stretch">
+  <div fxFlex style="background: rgb(255, 255, 255); padding: 20px;">
+    <div *ngIf="book$ | async as book" fxLayout="row" fxLayoutAlign="space-between cetner">
+      <div>
+       <p>Book title: {{ book.title }}</p>
+       <p>Pages: {{ book.pages }}</p>
+      </div>
+    <div fxLayout="column" fxLayoutAlign="space-between start" fxLayoutGap="20px">
+       <button mat-raised-button color="primary" (click)="goAuthor()">
+         <mat-icon>people_outline</mat-icon>
+         Authors
+       </button>
+       
+       <button mat-raised-button color="accent" (click)="remove()">
+         <mat-icon>delete_outline</mat-icon>
+         Remove
+       </button>
+
+    </div>
+  </div>
+ </div>
+<router-outlet></router-outlet>
+</div>
