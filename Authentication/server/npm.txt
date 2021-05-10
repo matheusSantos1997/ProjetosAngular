@@ -1,0 +1,17 @@
+npm init
+
+npm install express --save
+
+npm install mongoose --save
+
+npm nodemon --save-dev
+ 
+npm install cors --save
+ 
+npm install body-parser --save
+ 
+npm install faker --save 
+ 
+npm install bcryptjs --save
+ 
+npm install jsonwebtoken --save
