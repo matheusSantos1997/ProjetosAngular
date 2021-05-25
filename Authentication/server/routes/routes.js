@@ -2,9 +2,9 @@ const express = require('express');
 const router = express.Router();
 const PersonController = require('../controllers/PersonController');
 const ProductController = require('../controllers/ProductController');
-const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const AuthController = require('../controllers/AuthController');
+
+router.use(AuthController.check_token);
 
 // rotas
 router.get('/people', PersonController.all);
