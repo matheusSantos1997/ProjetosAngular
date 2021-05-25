@@ -1,0 +1,29 @@
+[{
+  "_id": {
+    "$oid": "60abbc045c73ae240cf286a9"
+  },
+  "firstname": "Matheus",
+  "lastname": "Santos",
+  "address": "Rua Carijós, 848",
+  "city": "Santos",
+  "state": "SP",
+  "phone": "1334649822",
+  "mobilephone": "13996032109",
+  "email": "matheus.uspeu@gmail.com",
+  "password": "$2a$10$IIjHdaUkGs5p/ZnJRHBZ9.SySsd/RYd1/IXADamLe7uBhHzsXCOCq",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60ad75fc90a111398ca8bbba"
+  },
+  "firstname": "Fulano",
+  "lastname": "teste",
+  "address": "rua fulano",
+  "city": "teste",
+  "state": "GO",
+  "phone": "1344544545",
+  "mobilephone": "45454545454",
+  "email": "fulano@gmail.com",
+  "password": "$2a$10$QuTKYuYAIt/AtJFnmaODFuOXatOVnwhKaa6jgFMt1vRK7N.3VMQrq",
+  "__v": 0
+}]
