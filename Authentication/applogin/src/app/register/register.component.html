@@ -1,0 +1,132 @@
+<div  fxLayout="row" fxLayoutAlign="space-around center" >
+  <div align="center" fxLayout="row" fxLayoutAlign="center center"  class="register-form">
+
+    <form role="form" [formGroup]="formRegister">
+
+      <mat-card class="mat-elevation-z8" flex="80">
+
+        <mat-card-title>Sign up</mat-card-title>
+
+        <mat-card-content fxLayout="column" fxLayoutAlign="space-around stretch">
+                      
+          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+            <mat-form-field fxFlex="45">
+              <input matInput type="text" formControlName="firstname" 
+                autocomplete="off" placeholder="First Name">
+                <mat-error *ngIf="formRegister.controls.firstname.hasError('required')">
+                  Please enter the first name
+                </mat-error>   
+            </mat-form-field>
+                        
+            <mat-form-field fxFlex="45">
+              <input matInput type="text" formControlName="lastname" 
+                autocomplete="off" placeholder="Last Name">
+                <mat-error *ngIf="formRegister.controls.lastname.hasError('required')">
+                  Please enter the last name
+                </mat-error>
+            </mat-form-field>               
+          </div>
+
+          <mat-form-field>
+            <input matInput type="text" formControlName="address" 
+                  autocomplete="off" placeholder="Address">
+                  <mat-error *ngIf="formRegister.controls.address.hasError('required')">
+                    Please enter the address
+                  </mat-error>
+          </mat-form-field>
+
+          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+            <mat-form-field fxFlex="75"> 
+              <input matInput type="text" formControlName="city" 
+                autocomplete="off" placeholder="City">
+                <mat-error *ngIf="formRegister.controls.city.hasError('required')">
+                  Please enter the city
+                </mat-error>
+            </mat-form-field>
+          
+            <mat-form-field  fxFlex="15">
+              <mat-select matNativeControl placeholder="State" formControlName="state">
+                <mat-option *ngFor="let state of states" [value]="state">
+                  {{state}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="formRegister.controls.state.hasError('required')">
+                Please enter the state
+              </mat-error>
+            </mat-form-field>          
+            
+          </div>          
+
+          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+            <mat-form-field fxFlex="45"> 
+              <input matInput formControlName="phone" 
+                autocomplete="off" mask="(00)0000-0000" placeholder="Phone">
+                <mat-error *ngIf="formRegister.controls.phone.hasError('required')">
+                  Please enter the phone
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field fxFlex="45">               
+              <input matInput type="text" formControlName="mobilephone" 
+                autocomplete="off" mask="(00)00000-0000" placeholder="Mobile Phone">
+                <mat-error *ngIf="formRegister.controls.mobilephone.hasError('required')">
+                  Please enter the mobile phone
+                </mat-error>
+            </mat-form-field>
+          </div>  
+
+          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+            <mat-form-field fxFlex="100">
+              <input matInput type="email" formControlName="email" 
+                class="form-control" value="" autocomplete="off" placeholder="E-mail" >
+                <mat-error *ngIf="formRegister.controls.email.hasError('required')">
+                  Please enter the email
+                </mat-error>
+                <mat-error *ngIf="formRegister.controls.email.hasError('email')">
+                  Please enter the Valid email
+                </mat-error>
+            </mat-form-field>  
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="space-between stretch">
+
+            <mat-form-field  fxFlex="45">
+              <input matInput type="password" formControlName="password1" 
+                type="password" autocomplete="off">
+                <mat-error *ngIf="formRegister.controls.password1.hasError('required')">
+                  Please enter the Password
+                </mat-error>
+                <mat-error *ngIf="formRegister.controls.password1.hasError('minlength')">
+                  must be at least 6 characters
+                </mat-error>
+              <mat-placeholder>
+                <mat-icon>lock</mat-icon> New password
+              </mat-placeholder>
+            </mat-form-field>
+            <mat-form-field fxFlex="45">
+              <input matInput type="password" formControlName="password2" 
+                    class="form-control" autocomplete="off">
+                    <mat-error *ngIf="formRegister.controls.password2.hasError('required')">
+                      Please confirm the Password
+                    </mat-error>
+                    <mat-error *ngIf="formRegister.controls.password2.hasError('minlength')">
+                      must be at least 6 characters
+                    </mat-error>
+              <mat-placeholder>
+                <mat-icon>lock_outline</mat-icon> Password confirmation
+              </mat-placeholder>
+            </mat-form-field>
+
+          </div>
+
+          <div fxLayout="row" fxLayoutAlign="end end" >
+              <button mat-button color="primary" type="submit" (click)="onSubmit()" [disabled]="!formRegister.valid">
+                <mat-icon>done</mat-icon>&nbsp;Register
+              </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </form>
+
+
+  </div>
+</div>
