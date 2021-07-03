@@ -1,5 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
+import { Evento } from '../models/Evento';
+import { EventoService } from '../services/evento.service';
 
 @Component({
   selector: 'app-eventos',
@@ -7,13 +11,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./eventos.component.css']
 })
 export class EventosComponent implements OnInit {
-
-  eventos: any = [];
-  eventosFiltrados: any = [];
-  widthImg: number = 50;
+  modalRef: BsModalRef;
+  eventos: Evento[] = [];
+  eventosFiltrados: Evento[] = [];
+  widthImg: number = 150;
   marginImg: number = 2;
 
-  mostrarImagem = false;
+  mostrarImagem: boolean = false;
   private _filtroLista: string = '';
 
   public get filtroLista(): string {
@@ -25,7 +29,7 @@ export class EventosComponent implements OnInit {
         this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
-  filtrarEventos(filtrarPor: string): any {
+  public filtrarEventos(filtrarPor: string): any {
      filtrarPor = filtrarPor.toLocaleLowerCase();
      return this.eventos.filter(
        evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1
@@ -33,27 +37,52 @@ export class EventosComponent implements OnInit {
      )
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private eventoService: EventoService, 
+              private modalService: BsModalService,
+              private toastr: ToastrService,
+              private spinner: NgxSpinnerService
+              ) { }
 
   ngOnInit() {
      this.getEventos();
+     /** spinner starts on init */
+    this.spinner.show();
+
+    setTimeout(() => {
+      /** spinner ends after 3 seconds */
+      this.spinner.hide();
+    }, 3000);
   }
 
-  alternarImagem() {
+  public alternarImagem() {
     this.mostrarImagem = !this.mostrarImagem; // vai fazer com que as imagens suma da tela
  }
 
   // consumindo e retornando todas as informaçoes da API
-  getEventos() {
-       this.http.get('https://localhost:5001/api/evento').subscribe(
-         (response) => {
-           console.log(response);
-           this.eventos = response
-           this.eventosFiltrados = this.eventos;
-           }, (error) => {
-              console.error(error);
-           }
-         )
+  public getEventos() {
+      this.eventoService.getEvento().subscribe(
+         (response: Evento[]) => {
+              this.eventos = response;
+              console.log(response);
+         },
+         (error: Error) => {
+            console.error(error); 
+         }
+      );
+  }
+
+  openModal(template: TemplateRef<any>): void{
+     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+     this.modalRef.hide();
+     this.toastr.success('O Evento foi deletado com sucesso!', 'Deletado!');
+  }
+
+  decline(): void {
+
+     this.modalRef.hide();
   }
 
 }
