@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Tipo } from '../models/Tipo';
 
 @Injectable({
@@ -8,14 +9,14 @@ import { Tipo } from '../models/Tipo';
 })
 export class TiposService {
 
-  url: string = 'https://localhost:5001/api/Tipos';
+  // url: string = 'https://localhost:5001/api/Tipos';
 
   // url: string = 'api/Tipos';
 
 constructor(private http: HttpClient) { }
 
 pegarTodos(): Observable<Tipo[]>{
-     return this.http.get<Tipo[]>(this.url);
+     return this.http.get<Tipo[]>(`${environment.URL_API}api/Tipos`);
 }
 
 }

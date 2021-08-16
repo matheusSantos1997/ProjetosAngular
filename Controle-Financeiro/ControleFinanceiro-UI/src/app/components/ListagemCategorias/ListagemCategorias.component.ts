@@ -22,7 +22,7 @@ export class ListagemCategoriasComponent implements OnInit {
   opcoesCategorias: string[] = []; // array de string responsavel por ter os nomes das categorias
   nomesCategorias: Observable<string[]>; // variavel que vai mostrar os nomes das categorias
 
-  @ViewChild(MatPaginator, { static: true})
+  @ViewChild(MatPaginator, { static: false})
   paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true})
@@ -42,6 +42,8 @@ export class ListagemCategoriasComponent implements OnInit {
          this.categorias.paginator = this.paginator;
          this.categorias.sort = this.sort;
       });
+
+      setTimeout(() => this.categorias.paginator = this.paginator);
 
       this.displayedColumns = this.exibirColunas();
 
