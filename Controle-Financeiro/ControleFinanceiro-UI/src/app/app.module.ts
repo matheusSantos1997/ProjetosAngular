@@ -47,10 +47,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 // components
 import { AppComponent } from './app.component';
-import { ListagemCategoriasComponent } from './components/ListagemCategorias/ListagemCategorias.component';
-import { NovaCategoriaComponent } from './components/NovaCategoria/NovaCategoria.component';
-import { AtualizarCategoriaComponent } from './components/AtualizarCategoria/AtualizarCategoria.component';
-import { DialogExclusaoCategoriaComponent } from './components/ListagemCategorias/DialogExclusaoCategoria/DialogExclusaoCategoria.component';
+import { ListagemCategoriasComponent } from './components/Categoria/ListagemCategorias/ListagemCategorias.component';
+import { NovaCategoriaComponent } from './components/Categoria/NovaCategoria/NovaCategoria.component';
+import { AtualizarCategoriaComponent } from './components/Categoria/AtualizarCategoria/AtualizarCategoria.component';
+import { DialogExclusaoCategoriaComponent } from './components/Categoria/ListagemCategorias/DialogExclusaoCategoria/DialogExclusaoCategoria.component';
+import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/ListagemFuncoes.component';
+import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
+import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
+import { DialogExclusaoFuncaoComponent } from './components/Funcao/ListagemFuncoes/DialogExclusaoFuncao/DialogExclusaoFuncao.component';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +63,11 @@ import { DialogExclusaoCategoriaComponent } from './components/ListagemCategoria
     ListagemCategoriasComponent,
     NovaCategoriaComponent,
     AtualizarCategoriaComponent,
-    DialogExclusaoCategoriaComponent
+    DialogExclusaoCategoriaComponent,
+    ListagemFuncoesComponent,
+    NovaFuncaoComponent,
+    AtualizarFuncaoComponent,
+    DialogExclusaoFuncaoComponent
    ],
   imports: [
     BrowserModule,
@@ -108,4 +117,5 @@ import { DialogExclusaoCategoriaComponent } from './components/ListagemCategoria
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

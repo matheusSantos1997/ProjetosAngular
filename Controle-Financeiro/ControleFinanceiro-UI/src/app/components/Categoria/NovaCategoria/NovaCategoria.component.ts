@@ -24,7 +24,7 @@ export class NovaCategoriaComponent implements OnInit {
   ngOnInit(): void {
      this.tiposServices.pegarTodos().subscribe(resultado => {
        this.tipos = resultado;
-       console.log(resultado);
+       // console.log(resultado);
      });
 
      this.formulario = new FormGroup({
@@ -52,7 +52,7 @@ export class NovaCategoriaComponent implements OnInit {
             verticalPosition: 'top'
           });
      }, (erro) => {
-      this.snackBar.open('Erro ao deletar', null, {
+      this.snackBar.open('Erro ao inserir uma categoria', null, {
          duration: 2000,
          panelClass: ['snackbar-error'],
          horizontalPosition: 'right',

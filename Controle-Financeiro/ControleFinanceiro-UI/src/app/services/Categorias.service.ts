@@ -14,6 +14,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoriasService {
 
  // url: string = 'https://localhost:5001/api/categorias';

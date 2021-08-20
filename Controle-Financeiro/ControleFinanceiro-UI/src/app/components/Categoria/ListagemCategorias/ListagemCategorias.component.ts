@@ -22,7 +22,7 @@ export class ListagemCategoriasComponent implements OnInit {
   opcoesCategorias: string[] = []; // array de string responsavel por ter os nomes das categorias
   nomesCategorias: Observable<string[]>; // variavel que vai mostrar os nomes das categorias
 
-  @ViewChild(MatPaginator, { static: false})
+  @ViewChild(MatPaginator, { static: true})
   paginator: MatPaginator;
 
   @ViewChild(MatSort, { static: true})
@@ -32,7 +32,15 @@ export class ListagemCategoriasComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
-      this.categoriasService.pegarTodos().subscribe(
+       this.getAllCategorias();
+  }
+
+  exibirColunas(): string[]{
+     return ['nome', 'icone', 'tipo', 'acoes']
+  }
+
+  getAllCategorias(){
+    this.categoriasService.pegarTodos().subscribe(
       (result) => {
          result.forEach(categoria => {
             // preenche as opçoes no array de string de categorias
@@ -41,6 +49,19 @@ export class ListagemCategoriasComponent implements OnInit {
          this.categorias.data = result;
          this.categorias.paginator = this.paginator;
          this.categorias.sort = this.sort;
+
+         // renomeia os nomes dos botoes da paginação
+         this.paginator._intl.itemsPerPageLabel = 'Itens por página';
+         this.paginator._intl.firstPageLabel = 'Primeira página';
+         this.paginator._intl.lastPageLabel = 'Última página';
+         this.paginator._intl.nextPageLabel = 'Próxima página';
+         this.paginator._intl.previousPageLabel = 'Página anterior';
+         this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+             return(
+               page * pageSize + 1 + ' - ' + (page * pageSize + pageSize) + ' de ' + length
+             );
+         };
+
       });
 
       setTimeout(() => this.categorias.paginator = this.paginator);
@@ -50,10 +71,6 @@ export class ListagemCategoriasComponent implements OnInit {
       // preenchendo os valores filtrados de nomesCategorias
       this.nomesCategorias = this.autoCompleteInput.valueChanges
           .pipe(startWith(''), map((nome) => this.filtrarNomes(nome)));
-  }
-
-  exibirColunas(): string[]{
-     return ['nome', 'icone', 'tipo', 'acoes']
   }
 
   abrirDialog(categoriaId, nome): void{
