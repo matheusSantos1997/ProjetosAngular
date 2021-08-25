@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 //angular material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -55,6 +56,7 @@ import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/Li
 import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
 import { DialogExclusaoFuncaoComponent } from './components/Funcao/ListagemFuncoes/DialogExclusaoFuncao/DialogExclusaoFuncao.component';
+import { RegistrarUsuarioComponent } from './components/Usuario/Registro/RegistrarUsuario/RegistrarUsuario.component';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { DialogExclusaoFuncaoComponent } from './components/Funcao/ListagemFunco
     ListagemFuncoesComponent,
     NovaFuncaoComponent,
     AtualizarFuncaoComponent,
-    DialogExclusaoFuncaoComponent
+    DialogExclusaoFuncaoComponent,
+    RegistrarUsuarioComponent
    ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ import { DialogExclusaoFuncaoComponent } from './components/Funcao/ListagemFunco
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,

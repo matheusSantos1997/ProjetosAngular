@@ -6,6 +6,7 @@ import { NovaCategoriaComponent } from './components/Categoria/NovaCategoria/Nov
 import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
 import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/ListagemFuncoes.component';
 import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
+import { RegistrarUsuarioComponent } from './components/Usuario/Registro/RegistrarUsuario/RegistrarUsuario.component';
 
 const routes: Routes = [
   // rotas de categorias
@@ -35,6 +36,9 @@ const routes: Routes = [
   {
     path: 'funcoes/atualizarfuncao/:id', component: AtualizarFuncaoComponent
   },
+  {
+    path: 'usuarios/registrarusuario', component: RegistrarUsuarioComponent
+  }
 ];
 
 @NgModule({
