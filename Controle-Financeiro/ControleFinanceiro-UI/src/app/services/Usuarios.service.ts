@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { DadosLogin } from '../models/DadosLogin';
 import { DadosRegistro } from '../models/DadosRegistro';
 
 const httpOptions = {
@@ -19,13 +20,18 @@ export class UsuariosService {
   constructor(private http: HttpClient) { }
 
   salvarFoto(formData: any): Observable<any> {
-        const apiUrl = `${environment.URL_API}api/Usuarios/SalvarFoto`;
+        const apiUrl = `${environment.URL_API}/Usuarios/SalvarFoto`;
         return this.http.post<any>(apiUrl, formData);
   }
 
   registrarUsuario(dadosRegistro: DadosRegistro): Observable<any>{
-     const apiUrl = `${environment.URL_API}api/Usuarios/RegistrarUsuario`;
+     const apiUrl = `${environment.URL_API}/Usuarios/RegistrarUsuario`;
      return this.http.post<DadosRegistro>(apiUrl, dadosRegistro);
+  }
+
+  logarUsuario(dadosLogin: DadosLogin): Observable<any>{
+     const apiUrl = `${environment.URL_API}/Usuarios/LogarUsuario`;
+     return this.http.post<DadosLogin>(apiUrl, dadosLogin);
   }
 
 }

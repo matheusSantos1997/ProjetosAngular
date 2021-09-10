@@ -1,3 +1,22 @@
 {
-    "angular.enable-strict-mode-prompt": false
+    "angular.enable-strict-mode-prompt": false,
+    "cSpell.words": [
+        "cartoes",
+        "Cartões",
+        "categorias",
+        "enviar",
+        "erro",
+        "erros",
+        "formulario",
+        "inválidos",
+        "listagemcartoes",
+        "listagemcategorias",
+        "Logado",
+        "logar",
+        "propriedade",
+        "resultado",
+        "seja",
+        "senha",
+        "vindo"
+    ]
 }

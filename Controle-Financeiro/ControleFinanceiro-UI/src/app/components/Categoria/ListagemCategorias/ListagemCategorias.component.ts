@@ -64,8 +64,6 @@ export class ListagemCategoriasComponent implements OnInit {
 
       });
 
-      setTimeout(() => this.categorias.paginator = this.paginator);
-
       this.displayedColumns = this.exibirColunas();
 
       // preenchendo os valores filtrados de nomesCategorias

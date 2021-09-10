@@ -16,7 +16,7 @@ export class TiposService {
 constructor(private http: HttpClient) { }
 
 pegarTodos(): Observable<Tipo[]>{
-     return this.http.get<Tipo[]>(`${environment.URL_API}api/Tipos`);
+     return this.http.get<Tipo[]>(`${environment.URL_API}/Tipos`);
 }
 
 }

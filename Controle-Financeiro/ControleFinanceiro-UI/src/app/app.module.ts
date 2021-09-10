@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxMaskModule } from 'ngx-mask';
+import { JwtModule } from '@auth0/angular-jwt';
 
 //angular material
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -56,8 +58,18 @@ import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/Li
 import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
 import { DialogExclusaoFuncaoComponent } from './components/Funcao/ListagemFuncoes/DialogExclusaoFuncao/DialogExclusaoFuncao.component';
-import { RegistrarUsuarioComponent } from './components/Usuario/Registro/RegistrarUsuario/RegistrarUsuario.component';
+import { RegistrarUsuarioComponent } from './components/Usuario/RegistrarUsuario/RegistrarUsuario.component';
+import { LoginUsuarioComponent } from './components/Usuario/LoginUsuario/LoginUsuario.component';
+import { DashboardComponent } from './components/dashboard/Dashboard/Dashboard.component';
+import { HeaderComponent } from './components/dashboard/Header/Header.component';
+import { NovoCartaoComponent } from './components/Cartao/NovoCartao/NovoCartao.component';
+import { ListagemCartoesComponent } from './components/Cartao/ListagemCartoes/ListagemCartoes.component';
+import { AtualizarCartaoComponent } from './components/Cartao/AtualizarCartao/AtualizarCartao.component';
+import { DialogExclusaoCartaoComponent } from './components/Cartao/ListagemCartoes/DialogExclusaoCartao/DialogExclusaoCartao.component';
 
+export function PegarTokenUsuario(){
+    return localStorage.getItem('TokenUsuarioLogado');
+}
 
 @NgModule({
   declarations: [
@@ -70,7 +82,14 @@ import { RegistrarUsuarioComponent } from './components/Usuario/Registro/Registr
     NovaFuncaoComponent,
     AtualizarFuncaoComponent,
     DialogExclusaoFuncaoComponent,
-    RegistrarUsuarioComponent
+    RegistrarUsuarioComponent,
+    LoginUsuarioComponent,
+    DashboardComponent,
+    HeaderComponent,
+    ListagemCartoesComponent,
+    NovoCartaoComponent,
+    AtualizarCartaoComponent,
+    DialogExclusaoCartaoComponent
    ],
   imports: [
     BrowserModule,
@@ -116,6 +135,14 @@ import { RegistrarUsuarioComponent } from './components/Usuario/Registro/Registr
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgxMaskModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+         tokenGetter: PegarTokenUsuario,
+         allowedDomains: ['localhost:5001'],
+         disallowedRoutes: []
+      }
+    }),
   ],
   providers: [
   ],

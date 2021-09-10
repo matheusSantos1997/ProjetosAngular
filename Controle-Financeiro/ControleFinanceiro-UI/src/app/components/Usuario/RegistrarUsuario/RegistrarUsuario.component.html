@@ -14,7 +14,7 @@
                        </div>
 
                        <div fxLayoutAlign="center end">
-                          <input hidden type="file" #fileInput name="foto" formControlName="foto" required />
+                          <input hidden type="file" #fileInput name="foto" formControlName="foto" required (change)="selecionarFoto($event)" />
                           <br/><br/><br/><br/>
                           <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
                             Escolha a sua foto
@@ -66,7 +66,7 @@
                     <div>
                       <mat-form-field>
                           <mat-label>CPF</mat-label>
-                          <input matInput type="text" formControlName="cpf" placeholder="Digite o seu CPF" required minlength="1" maxlength="20" />
+                          <input matInput type="text" formControlName="cpf" placeholder="Digite o seu CPF" required minlength="1" maxlength="20" autocomplete="off" mask="000.000.000-00" />
 
                             <mat-error *ngIf="propriedade.cpf.invalid && propriedade.cpf.touched">
                                <sup>*</sup> Digite o seu CPF
@@ -142,12 +142,12 @@
 
               <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" class="botoes">
                  <div>
-                    <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid">
+                    <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="enviarFormulario()">
                        Registrar
                     </button>
                  </div>
                  <div>
-                  <button type="button" mat-stroked-button color="accent" routerLink="/usuarios/login">
+                  <button type="button" mat-stroked-button color="accent" routerLink="/usuarios/loginusuario">
                      Já tenho conta
                   </button>
                </div>

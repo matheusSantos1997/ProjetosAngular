@@ -1,0 +1,14 @@
+<mat-toolbar color="primary">
+    <span>Controle Financeiro</span>
+    <span class="spacer"></span>
+
+    <!-- div que será exibida se o usuario estiver logado -->
+    <div *ngIf="emailUsuarioLogado" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
+         <div>
+             Olá, {{emailUsuarioLogado}}
+         </div>
+         <div>
+            <button type="button" mat-raised-button (click)="efetuarLogout()">Logout</button>
+         </div>
+    </div>
+</mat-toolbar>

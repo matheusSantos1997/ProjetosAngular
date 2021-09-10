@@ -7,7 +7,8 @@ import { Categoria } from '../models/Categoria';
 // congigurando o cabeçalho da requisiçao http para enviar dados para a api
 const httpOptions = {
    headers: new HttpHeaders ({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
    })
 };
 
@@ -24,33 +25,34 @@ export class CategoriasService {
 constructor(private http: HttpClient) { }
 
 pegarTodos(): Observable<Categoria[]>{
-   return this.http.get<Categoria[]>(`${environment.URL_API}api/categorias`);
+   return this.http.get<Categoria[]>(`${environment.URL_API}/categorias`);
 }
 
 pegarCategoriaPeloId(categoriaId: number): Observable<Categoria>{
-   const apiUrl = `${environment.URL_API}api/categorias/${categoriaId}`;
+   const apiUrl = `${environment.URL_API}/categorias/${categoriaId}`;
 
    return this.http.get<Categoria>(apiUrl);
 }
 
 novaCategoria(categoria: Categoria): Observable<any>{
-    return this.http.post<Categoria>(`${environment.URL_API}api/categorias`, categoria, httpOptions);
+   console.log(localStorage.getItem('TokenUsuarioLogado'));
+    return this.http.post<Categoria>(`${environment.URL_API}/categorias`, categoria, httpOptions);
 }
 
 atualizarCategoria(categoriaId: number, categoria: Categoria): Observable<any>{
-    const apiUrl = `${environment.URL_API}api/categorias/${categoriaId}`;
+    const apiUrl = `${environment.URL_API}/categorias/${categoriaId}`;
 
     return this.http.put<Categoria>(apiUrl, categoria, httpOptions);
 }
 
 excluirCategoria(categoriaId: number): Observable<any> {
-    const apiUrl = `${environment.URL_API}api/categorias/${categoriaId}`;
+    const apiUrl = `${environment.URL_API}/categorias/${categoriaId}`;
     return this.http.delete<number>(apiUrl, httpOptions);
 }
 
 // filtrar categorias
 filtrarCategorias(nomeCategoria: string): Observable<Categoria[]>{
-   const apiUrl = `${environment.URL_API}api/categorias/FiltrarCategorias/${nomeCategoria}`;
+   const apiUrl = `${environment.URL_API}/categorias/FiltrarCategorias/${nomeCategoria}`;
    return this.http.get<Categoria[]>(apiUrl);
 }
 

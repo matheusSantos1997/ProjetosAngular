@@ -1,0 +1,68 @@
+<div class="loginFormulario" fxLayout="row" fxLayoutAlign="center end">
+    <div class="divFormulario">
+       <h1>Faça o seu login</h1>
+
+       <mat-divider></mat-divider>
+
+       <div class="formulario">
+        <form [formGroup]="formulario">
+          <div>
+            <mat-form-field>
+               <mat-label>Email</mat-label>
+               <input matInput type="email" formControlName="email" placeholder="Digite seu email"
+               required minlength="10" maxlength="50" />
+               <mat-error *ngIf="propriedade.email.touched && propriedade.email.invalid">
+                 <sup>*</sup> Digite o seu email
+               </mat-error>
+               <mat-error *ngIf="propriedade.email.invalid && propriedade.email.errors?.email">
+                <sup>*</sup> Digite um email válido
+              </mat-error>
+               <mat-error *ngIf="propriedade.email.invalid && propriedade.email.errors?.minlength">
+                <sup>*</sup> Use mais caracteres
+              </mat-error>
+              <mat-error *ngIf="propriedade.email.invalid && propriedade.email.errors?.maxlength">
+                <sup>*</sup> Use menos caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field>
+               <mat-label>Senha</mat-label>
+               <input matInput type="password" formControlName="senha" placeholder="Digite sua senha"
+               required minlength="6" maxlength="50" />
+               <mat-error *ngIf="propriedade.senha.touched && propriedade.senha.invalid">
+                 <sup>*</sup> Digite o sua senha
+               </mat-error>
+               <mat-error *ngIf="propriedade.senha.invalid && propriedade.senha.errors?.minlength">
+                <sup>*</sup> Use mais caracteres
+              </mat-error>
+              <mat-error *ngIf="propriedade.senha.invalid && propriedade.senha.errors?.maxlength">
+                <sup>*</sup> Use menos caracteres
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <br/><br/><br/>
+
+          <mat-divider></mat-divider>
+
+          <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" class="botoes">
+             <div>
+                <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="enviarFormulario()">
+                   Logar
+                </button>
+             </div>
+
+             <div>
+              <button type="button" mat-stroked-button color="accent" routerLink="/usuarios/registrarusuario">
+                 Não possuo conta
+              </button>
+           </div>
+          </div>
+        </form>
+        <mat-progress-bar mode="query" *ngIf="bLoading"></mat-progress-bar>
+       </div>
+
+    </div>
+</div>
