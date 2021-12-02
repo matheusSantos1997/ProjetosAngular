@@ -49,7 +49,7 @@
 
          <ng-container matColumnDef="limite">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Limite</th>
-          <td mat-cell *matCellDef="let cartao">{{ cartao.limite | currency:'R$':'symbol' }}</td>
+          <td mat-cell *matCellDef="let cartao">{{ cartao.limite | currency:'R$' | ReplaceChange }}</td>
          </ng-container>
 
          <ng-container matColumnDef="acoes">

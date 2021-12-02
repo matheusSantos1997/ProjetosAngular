@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class CategoriasService {
+export class CategoriasService  {
 
  // url: string = 'https://localhost:5001/api/categorias';
 
@@ -30,7 +30,6 @@ pegarTodos(): Observable<Categoria[]>{
 
 pegarCategoriaPeloId(categoriaId: number): Observable<Categoria>{
    const apiUrl = `${environment.URL_API}/categorias/${categoriaId}`;
-
    return this.http.get<Categoria>(apiUrl);
 }
 
@@ -53,6 +52,11 @@ excluirCategoria(categoriaId: number): Observable<any> {
 // filtrar categorias
 filtrarCategorias(nomeCategoria: string): Observable<Categoria[]>{
    const apiUrl = `${environment.URL_API}/categorias/FiltrarCategorias/${nomeCategoria}`;
+   return this.http.get<Categoria[]>(apiUrl);
+}
+
+filtrarCategoriasDespesas(): Observable<Categoria[]>{
+   const apiUrl = `${environment.URL_API}/categorias/FiltrarCategoriasDespesas`;
    return this.http.get<Categoria[]>(apiUrl);
 }
 

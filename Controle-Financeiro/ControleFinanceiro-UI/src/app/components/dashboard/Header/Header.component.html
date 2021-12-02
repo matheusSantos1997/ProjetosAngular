@@ -4,6 +4,10 @@
 
     <!-- div que será exibida se o usuario estiver logado -->
     <div *ngIf="emailUsuarioLogado" fxLayout="row" fxLayoutGap="30px" fxLayoutAlign="end center">
+   
+            <button mat-icon-button>
+                <mat-icon>account_circle</mat-icon>
+            </button>
          <div>
              Olá, {{emailUsuarioLogado}}
          </div>

@@ -69,7 +69,9 @@
             <div>
               <mat-form-field>
                 <mat-label>Limite do cartão:</mat-label>
-                <input type="text" formControlName="limite" matInput placeholder="Digite a limite do cartão" required />
+                <input type="text" formControlName="limite" matInput 
+                currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }" 
+                placeholder="Digite a limite do cartão" required />
                 <mat-error *ngIf="propriedade.limite.touched && propriedade.limite.invalid">
                    <sup>*</sup> Digite a limite do cartão
                 </mat-error>

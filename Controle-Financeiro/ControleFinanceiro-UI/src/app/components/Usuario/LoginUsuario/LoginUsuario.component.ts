@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs/operators';
 import { UsuariosService } from 'src/app/services/Usuarios.service';
+import { IconSnackBarComponent } from '../../customs/icon-snack-bar.component';
 
 @Component({
   selector: 'app-LoginUsuario',
@@ -47,23 +48,45 @@ export class LoginUsuarioComponent implements OnInit {
         this.bLoading = false;
         // console.log(tokenUsuarioLogado);
         this.router.navigate(['/cartoes/listagemcartoes']);
-        this.snackBar.open(`seja bem vindo ${resultado.emailUsuarioLogado}`, null, {
+        this.snackBar.openFromComponent(IconSnackBarComponent, {
+            data: {
+               icon: 'done',
+               message: ` Bem vindo ${resultado.emailUsuarioLogado}`  
+            },
              duration: 2000,
              panelClass: ['snackbar-success'],
              horizontalPosition: 'right',
-             verticalPosition: 'top'
-         });
+             verticalPosition: 'top'   
+        });
      }, (erro) => {
         this.bLoading = false;
         if(erro.status === 404){
-          this.snackBar.open('Email e/ou Senha inválidos.', null, {
+          this.snackBar.openFromComponent(IconSnackBarComponent, {
+             data: {
+                icon: 'gpp_bad',
+                message: ' Email e/ou Senha inválidos.'
+             },
+             duration: 2000,
+             panelClass: ['snackbar-error'],
+             horizontalPosition: 'right',
+             verticalPosition: 'top'
+          });
+        } else {
+         this.snackBar.openFromComponent(IconSnackBarComponent, {
+            data: {
+               icon: 'gpp_bad',
+               message: ' Algo deu Errado.'
+            },
             duration: 2000,
             panelClass: ['snackbar-error'],
             horizontalPosition: 'right',
             verticalPosition: 'top'
-          });
+         });
         }
+        console.log(erro);
      });
+     
   }
+
 
 }

@@ -7,6 +7,9 @@ import { AtualizarCategoriaComponent } from './components/Categoria/AtualizarCat
 import { ListagemCategoriasComponent } from './components/Categoria/ListagemCategorias/ListagemCategorias.component';
 import { NovaCategoriaComponent } from './components/Categoria/NovaCategoria/NovaCategoria.component';
 import { DashboardComponent } from './components/dashboard/Dashboard/Dashboard.component';
+import { AtualizarDespesaComponent } from './components/Despesa/AtualizarDespesa/AtualizarDespesa.component';
+import { ListagemDespesasComponent } from './components/Despesa/ListagemDespesas/ListagemDespesas.component';
+import { NovaDespesaComponent } from './components/Despesa/NovaDespesa/NovaDespesa.component';
 import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
 import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/ListagemFuncoes.component';
 import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
@@ -30,12 +33,6 @@ const routes: Routes = [
       {
         path: 'categorias/atualizarcategoria/:id', component: AtualizarCategoriaComponent
       },
-      // {
-      //   path: '', pathMatch: 'full', redirectTo: 'categorias/listagemcategorias'
-      // },
-      // {
-      //   path: '**', redirectTo: 'categorias/listagemcategorias'
-      // },
 
       // rotas de funçoes
       {
@@ -55,8 +52,16 @@ const routes: Routes = [
       },
       {
         path: 'cartoes/atualizarcartao/:id', component: AtualizarCartaoComponent
+      },
+      {
+        path: 'despesas/listagemdespesas', component: ListagemDespesasComponent
+      },
+      {
+        path: 'despesas/novadespesa', component: NovaDespesaComponent,
+      },
+      {
+        path: 'despesas/atualizardespesa/:id', component: AtualizarDespesaComponent
       }
-
     ]
   },
   {

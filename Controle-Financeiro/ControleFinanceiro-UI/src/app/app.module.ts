@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
+import { NgxCurrencyModule } from 'ngx-currency';
 import { JwtModule } from '@auth0/angular-jwt';
 
 //angular material
@@ -50,6 +51,8 @@ import { AppRoutingModule } from './app-routing.module';
 
 // components
 import { AppComponent } from './app.component';
+import { IconSnackBarComponent } from './components/customs/icon-snack-bar.component';
+import { ReplaceChangePipe } from './components/customs/ReplaceChange.pipe';
 import { ListagemCategoriasComponent } from './components/Categoria/ListagemCategorias/ListagemCategorias.component';
 import { NovaCategoriaComponent } from './components/Categoria/NovaCategoria/NovaCategoria.component';
 import { AtualizarCategoriaComponent } from './components/Categoria/AtualizarCategoria/AtualizarCategoria.component';
@@ -66,6 +69,10 @@ import { NovoCartaoComponent } from './components/Cartao/NovoCartao/NovoCartao.c
 import { ListagemCartoesComponent } from './components/Cartao/ListagemCartoes/ListagemCartoes.component';
 import { AtualizarCartaoComponent } from './components/Cartao/AtualizarCartao/AtualizarCartao.component';
 import { DialogExclusaoCartaoComponent } from './components/Cartao/ListagemCartoes/DialogExclusaoCartao/DialogExclusaoCartao.component';
+import { NovaDespesaComponent } from './components/Despesa/NovaDespesa/NovaDespesa.component';
+import { ListagemDespesasComponent } from './components/Despesa/ListagemDespesas/ListagemDespesas.component';
+import { AtualizarDespesaComponent } from './components/Despesa/AtualizarDespesa/AtualizarDespesa.component';
+import { DialogExclusaoDespesaComponent } from './components/Despesa/ListagemDespesas/DialogExclusaoDespesa/DialogExclusaoDespesa.component';
 
 export function PegarTokenUsuario(){
     return localStorage.getItem('TokenUsuarioLogado');
@@ -89,10 +96,16 @@ export function PegarTokenUsuario(){
     ListagemCartoesComponent,
     NovoCartaoComponent,
     AtualizarCartaoComponent,
-    DialogExclusaoCartaoComponent
+    DialogExclusaoCartaoComponent,
+    NovaDespesaComponent,
+    ListagemDespesasComponent,
+    AtualizarDespesaComponent,
+    DialogExclusaoDespesaComponent,
+    IconSnackBarComponent,
+    ReplaceChangePipe
    ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -136,6 +149,7 @@ export function PegarTokenUsuario(){
     MatTooltipModule,
     MatTreeModule,
     NgxMaskModule.forRoot(),
+    NgxCurrencyModule,
     JwtModule.forRoot({
       config: {
          tokenGetter: PegarTokenUsuario,
@@ -143,8 +157,6 @@ export function PegarTokenUsuario(){
          disallowedRoutes: []
       }
     }),
-  ],
-  providers: [
   ],
   bootstrap: [AppComponent]
 })
