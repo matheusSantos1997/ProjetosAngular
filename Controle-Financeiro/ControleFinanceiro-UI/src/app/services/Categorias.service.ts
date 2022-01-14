@@ -60,4 +60,9 @@ filtrarCategoriasDespesas(): Observable<Categoria[]>{
    return this.http.get<Categoria[]>(apiUrl);
 }
 
+filtrarCategoriasGanhos(): Observable<Categoria[]> {
+    const apiUrl = `${environment.URL_API}/categorias/FiltrarCategoriasGanhos`;
+    return this.http.get<Categoria[]>(apiUrl);
+}
+
 }

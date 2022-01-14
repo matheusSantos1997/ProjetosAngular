@@ -73,6 +73,9 @@ import { NovaDespesaComponent } from './components/Despesa/NovaDespesa/NovaDespe
 import { ListagemDespesasComponent } from './components/Despesa/ListagemDespesas/ListagemDespesas.component';
 import { AtualizarDespesaComponent } from './components/Despesa/AtualizarDespesa/AtualizarDespesa.component';
 import { DialogExclusaoDespesaComponent } from './components/Despesa/ListagemDespesas/DialogExclusaoDespesa/DialogExclusaoDespesa.component';
+import { ListagemGanhosComponent } from './components/Ganho/listagem-ganhos/listagem-ganhos.component';
+import { NovoGanhoComponent } from './components/Ganho/novo-ganho/novo-ganho.component';
+import { AtualizarGanhoComponent } from './components/Ganho/atualizar-ganho/atualizar-ganho.component';
 
 export function PegarTokenUsuario(){
     return localStorage.getItem('TokenUsuarioLogado');
@@ -102,7 +105,10 @@ export function PegarTokenUsuario(){
     AtualizarDespesaComponent,
     DialogExclusaoDespesaComponent,
     IconSnackBarComponent,
-    ReplaceChangePipe
+    ReplaceChangePipe,
+    ListagemGanhosComponent,
+    NovoGanhoComponent,
+    AtualizarGanhoComponent
    ],
   imports: [
   BrowserModule,

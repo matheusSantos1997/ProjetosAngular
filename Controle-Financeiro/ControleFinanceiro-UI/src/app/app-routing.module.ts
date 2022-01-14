@@ -13,6 +13,9 @@ import { NovaDespesaComponent } from './components/Despesa/NovaDespesa/NovaDespe
 import { AtualizarFuncaoComponent } from './components/Funcao/AtualizarFuncao/AtualizarFuncao.component';
 import { ListagemFuncoesComponent } from './components/Funcao/ListagemFuncoes/ListagemFuncoes.component';
 import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.component';
+import { AtualizarGanhoComponent } from './components/Ganho/atualizar-ganho/atualizar-ganho.component';
+import { ListagemGanhosComponent } from './components/Ganho/listagem-ganhos/listagem-ganhos.component';
+import { NovoGanhoComponent } from './components/Ganho/novo-ganho/novo-ganho.component';
 import { LoginUsuarioComponent } from './components/Usuario/LoginUsuario/LoginUsuario.component';
 import { RegistrarUsuarioComponent } from './components/Usuario/RegistrarUsuario/RegistrarUsuario.component';
 import { AuthGuardService } from './services/AuthGuard.service';
@@ -61,6 +64,15 @@ const routes: Routes = [
       },
       {
         path: 'despesas/atualizardespesa/:id', component: AtualizarDespesaComponent
+      },
+      {
+        path: 'ganhos/listagemganhos', component: ListagemGanhosComponent
+      },
+      {
+        path: 'ganhos/novoganho', component: NovoGanhoComponent
+      },
+      {
+        path: 'ganhos/atualizarganho/:id', component: AtualizarGanhoComponent
       }
     ]
   },
