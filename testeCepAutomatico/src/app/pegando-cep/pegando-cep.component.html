@@ -1,0 +1,70 @@
+<h1>CEP automático, Expressões Regulares(Regex) e Máscara de CPF/CNPJ</h1>
+
+<div>
+  <form [formGroup]="formulario">
+
+    <label for="cep">CEP: </label>
+    <input type="text" class="form-control" id="cep" formControlName="cep"
+     mask="00000-000" placeholder="CEP" (blur)="consultaCEP()" autocomplete="off">
+    <div id="campo" *ngIf="formulario.get('cep').hasError('required') &&
+    formulario.get('cep').touched" class="invalid-feedback">
+        O campo cep é obrigatório
+    </div><br><br>
+
+    <label for="rua">Rua: </label>
+      <input name="rua" type="text" id="rua" formControlName="rua" readonly="true" /><br><br>
+
+    <label for="rua">Número: </label>
+    <input name="numero" type="number" id="numero" formControlName="numero" />
+    <div id="campo" *ngIf="formulario.get('numero').hasError('required') &&
+    formulario.get('numero').touched" class="invalid-feedback">
+        O campo numero é obrigatório
+    </div><br><br>
+
+    <label for="rua">Complemento: </label>
+      <input name="complemento" type="text" id="complemento" formControlName="complemento" readonly="true" /><br><br>
+
+    <label for="bairro">Bairro: </label>
+      <input name="bairro" type="text" id="bairro" formControlName="bairro" readonly="true" /><br><br>
+
+    <label for="cidade">Cidade: </label>
+      <input name="cidade" type="text" id="cidade" formControlName="cidade" readonly="true" /><br><br>
+
+    <label for="uf">Estado: </label>
+      <input name="uf" type="text" id="uf" formControlName="uf" readonly="true" /><br><br>
+
+    <label for="ibge">IBGE: </label>
+      <input name="ibge" type="text" id="ibge" formControlName="ibge" readonly="true" /><br><br>
+
+      <label for="password">CPF/CNPJ: </label>
+      <input type="text" id="cpf" formControlName="cpfCnpj"
+      mask="000.000.000-00 || 00.000.000/0000-00"
+            placeholder="CPF ou CNPJ" autocomplete="off" /><br>
+            <div id="campo" *ngIf="formulario.get('cpfCnpj').hasError('required') &&
+                           formulario.get('cpfCnpj').touched" class="invalid-feedback">
+              O campo CPF/CNPJ é obrigatório
+          </div>
+          <div *ngIf="formulario.get('cpfCnpj').hasError('minlength') && formulario.get('cpfCnpj').touched" class="invalid-feedback">
+            O campo CPF/CNPJ deve ter no mínimo 11 Caracteres
+        </div>
+
+    <br><br>
+    <label for="password">SENHA: </label>
+    <input type="password" formControlName="password" id="password" placeholder="Senha" required>
+                     <!-- <input type = "checkbox" (click)="mostrarSenha()"> -->
+                     <i class="{{password ? 'fa fa-eye' : 'fa fa-eye-slash'}}"
+                       (click)="mostrarSenha()" (click)="alternarImagem()"></i>
+    <div id="campo" *ngIf="formulario.get('password').hasError('required') &&
+                     formulario.get('password').touched" class="invalid-feedback">
+        O campo senha é obrigatório
+    </div>
+    <div id="campo" *ngIf="formulario.get('password').hasError('pattern') &&
+                     formulario.get('password').touched" class="invalid-feedback">
+        senha inválida, somente letras Maiúsculas e Minúsculas
+    </div>
+    <br><br>
+
+    <button type="submit" [disabled]="formulario.invalid">Salvar</button>
+
+  </form>
+</div>
