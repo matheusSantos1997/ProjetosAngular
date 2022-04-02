@@ -61,7 +61,7 @@
           <mat-form-field>
             <mat-label>Dia</mat-label>
             <input type="text" formControlName="dia" matInput
-              placeholder="Digite o valor" required />
+              placeholder="Digite o valor" (keydown)="somenteNumeros($event)" />
             <mat-error *ngIf="propriedade.valor.touched && propriedade.valor.invalid">
               <sup>*</sup> Digite o dia do ganho
             </mat-error>
@@ -86,7 +86,7 @@
           <mat-form-field>
             <mat-label>Ano</mat-label>
             <input type="text" formControlName="ano" matInput
-              placeholder="Digite o ano do ganho" required />
+              placeholder="Digite o ano do ganho" (keydown)="somenteNumeros($event)" />
             <mat-error *ngIf="propriedade.ano.touched && propriedade.ano.invalid">
               <sup>*</sup> Digite o ano do ganho
             </mat-error>

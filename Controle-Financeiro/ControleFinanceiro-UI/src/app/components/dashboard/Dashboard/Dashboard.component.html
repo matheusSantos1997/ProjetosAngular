@@ -1,8 +1,18 @@
-<app-Header></app-Header>
+<app-Header id="menu"></app-Header>
 
 <mat-sidenav-container>
      <mat-sidenav mode="side" opened>
         <mat-list style="cursor: pointer;">
+          <mat-list-item routerLink="/usuarios/atualizarusuario">
+            <mat-icon>admin_panel_settings</mat-icon> Minhas informações
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
+          <mat-list-item routerLink="/dashboard/index">
+            <mat-icon>insert_chart_outlined</mat-icon> Dashboard
+          </mat-list-item>
+          <mat-divider></mat-divider>
+
           <mat-list-item routerLink="/cartoes/listagemcartoes">
              <mat-icon>credit_card</mat-icon> cartões
           </mat-list-item>

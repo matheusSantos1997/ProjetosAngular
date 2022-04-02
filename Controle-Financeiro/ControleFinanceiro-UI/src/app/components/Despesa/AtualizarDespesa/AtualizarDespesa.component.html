@@ -6,7 +6,7 @@
     <mat-card>
       <mat-card-header>
          <mat-card-title>
-            <h3>Atualizar despesa no valor de {{ valorDespesa }}</h3>
+            <h3>Atualizar despesa no valor de R$ {{ valorDespesa }}</h3>
          </mat-card-title>
       </mat-card-header>
 
@@ -21,7 +21,7 @@
                   </mat-option>
                 </mat-select>
                 <mat-error *ngIf="propriedade.cartaoId.touched && propriedade.cartaoId.invalid">
-                  <sup>*</sup> Selecione o cartão                
+                  <sup>*</sup> Selecione o cartão
                 </mat-error>
              </mat-form-field>
           </div>
@@ -32,7 +32,7 @@
                <input type="text" matInput formControlName="descricao" placeholder="Digite a Descrição da despesa"
                required minlength="1" maxlength="50" />
                <mat-error *ngIf="propriedade.descricao.touched && propriedade.descricao.invalid">
-                 <sup>*</sup> Digite a descrição da despesa               
+                 <sup>*</sup> Digite a descrição da despesa
                </mat-error>
                <mat-error *ngIf="propriedade.descricao.errors?.minlength">
                 <sup>*</sup> Use mais caracteres
@@ -52,7 +52,7 @@
                </mat-option>
              </mat-select>
              <mat-error *ngIf="propriedade.categoriaId.touched && propriedade.categoriaId.invalid">
-               <sup>*</sup> Selecione a categoria         
+               <sup>*</sup> Selecione a categoria
              </mat-error>
           </mat-form-field>
        </div>
@@ -60,12 +60,12 @@
        <div>
         <mat-form-field>
            <mat-label>Valor</mat-label>
-           <input type="text" matInput formControlName="valor" 
-           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }" 
+           <input type="text" matInput formControlName="valor"
+           currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left' }"
            placeholder="Digite o valor da despesa"
            required />
            <mat-error *ngIf="propriedade.valor.touched && propriedade.valor.invalid">
-             <sup>*</sup> Digite o valor da despesa               
+             <sup>*</sup> Digite o valor da despesa
            </mat-error>
         </mat-form-field>
       </div>
@@ -74,9 +74,9 @@
         <mat-form-field>
            <mat-label>Dia</mat-label>
            <input type="text" matInput formControlName="dia" placeholder="Digite o dia"
-           required />
+           (keydown)="somenteNumeros($event)" />
            <mat-error *ngIf="propriedade.dia.touched && propriedade.dia.invalid">
-             <sup>*</sup> Digite o dia              
+             <sup>*</sup> Digite o dia
            </mat-error>
         </mat-form-field>
       </div>
@@ -90,7 +90,7 @@
              </mat-option>
            </mat-select>
            <mat-error *ngIf="propriedade.mesId.touched && propriedade.mesId.invalid">
-             <sup>*</sup> Selecione o mês da despesa         
+             <sup>*</sup> Selecione o mês da despesa
            </mat-error>
         </mat-form-field>
       </div>
@@ -99,9 +99,9 @@
         <mat-form-field>
            <mat-label>Ano</mat-label>
            <input type="text" matInput formControlName="ano" placeholder="Digite o dia"
-           required />
+           (keydown)="somenteNumeros($event)" />
            <mat-error *ngIf="propriedade.ano.touched && propriedade.ano.invalid">
-             <sup>*</sup> Digite o ano             
+             <sup>*</sup> Digite o ano
            </mat-error>
         </mat-form-field>
       </div>

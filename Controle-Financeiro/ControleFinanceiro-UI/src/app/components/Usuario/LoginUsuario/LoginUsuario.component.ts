@@ -47,16 +47,16 @@ export class LoginUsuarioComponent implements OnInit {
         localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
         this.bLoading = false;
         // console.log(tokenUsuarioLogado);
-        this.router.navigate(['/cartoes/listagemcartoes']);
+        this.router.navigate(['/dashboard/index']);
         this.snackBar.openFromComponent(IconSnackBarComponent, {
             data: {
                icon: 'done',
-               message: ` Bem vindo ${resultado.emailUsuarioLogado}`  
+               message: ` Bem vindo ${resultado.emailUsuarioLogado}`
             },
              duration: 2000,
              panelClass: ['snackbar-success'],
              horizontalPosition: 'right',
-             verticalPosition: 'top'   
+             verticalPosition: 'top'
         });
      }, (erro) => {
         this.bLoading = false;
@@ -85,7 +85,7 @@ export class LoginUsuarioComponent implements OnInit {
         }
         console.log(erro);
      });
-     
+
   }
 
 

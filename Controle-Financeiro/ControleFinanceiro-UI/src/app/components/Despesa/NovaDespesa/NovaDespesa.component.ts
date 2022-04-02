@@ -60,6 +60,19 @@ export class NovaDespesaComponent implements OnInit {
       return this.formulario.controls;
   }
 
+  somenteNumeros(e: any) {
+    let charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace
+    // charCode 9 = tab
+    if (charCode != 8 && charCode != 9) {
+        // charCode 48 equivale a 0
+        // charCode 57 equivale a 9
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
+  }
+
   voltarListagem(): void {
      this.router.navigate(['/despesas/listagemdespesas']);
   }
@@ -73,12 +86,12 @@ export class NovaDespesaComponent implements OnInit {
           this.snackBar.openFromComponent(IconSnackBarComponent, {
             data: {
                icon: 'done',
-               message: resultado.mensagem 
+               message: resultado.mensagem
             },
              duration: 2000,
              panelClass: ['snackbar-success'],
              horizontalPosition: 'right',
-             verticalPosition: 'top'   
+             verticalPosition: 'top'
         });
       }, (error) => {
          if (error.status === 400) {

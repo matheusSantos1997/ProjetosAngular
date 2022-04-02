@@ -7,8 +7,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMaskModule } from 'ngx-mask';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { JwtModule } from '@auth0/angular-jwt';
+import { ChartsModule } from 'ng2-charts';
 
-//angular material
+//angular material imports
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
@@ -52,7 +53,6 @@ import { AppRoutingModule } from './app-routing.module';
 // components
 import { AppComponent } from './app.component';
 import { IconSnackBarComponent } from './components/customs/icon-snack-bar.component';
-import { ReplaceChangePipe } from './components/customs/ReplaceChange.pipe';
 import { ListagemCategoriasComponent } from './components/Categoria/ListagemCategorias/ListagemCategorias.component';
 import { NovaCategoriaComponent } from './components/Categoria/NovaCategoria/NovaCategoria.component';
 import { AtualizarCategoriaComponent } from './components/Categoria/AtualizarCategoria/AtualizarCategoria.component';
@@ -76,6 +76,9 @@ import { DialogExclusaoDespesaComponent } from './components/Despesa/ListagemDes
 import { ListagemGanhosComponent } from './components/Ganho/listagem-ganhos/listagem-ganhos.component';
 import { NovoGanhoComponent } from './components/Ganho/novo-ganho/novo-ganho.component';
 import { AtualizarGanhoComponent } from './components/Ganho/atualizar-ganho/atualizar-ganho.component';
+import { DialogExclusaoGanhosComponent } from './components/Ganho/listagem-ganhos/dialog-exclusao-ganhos/dialog-exclusao-ganhos.component';
+import { AtualizarUsuarioComponent } from './components/Usuario/atualizar-usuario/atualizar-usuario.component';
+import { IndexComponent } from './components/dashboard/index/index.component';
 
 export function PegarTokenUsuario(){
     return localStorage.getItem('TokenUsuarioLogado');
@@ -105,15 +108,18 @@ export function PegarTokenUsuario(){
     AtualizarDespesaComponent,
     DialogExclusaoDespesaComponent,
     IconSnackBarComponent,
-    ReplaceChangePipe,
     ListagemGanhosComponent,
     NovoGanhoComponent,
-    AtualizarGanhoComponent
+    AtualizarGanhoComponent,
+    DialogExclusaoGanhosComponent,
+    AtualizarUsuarioComponent,
+    IndexComponent
    ],
   imports: [
   BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ChartsModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
@@ -159,10 +165,10 @@ export function PegarTokenUsuario(){
     JwtModule.forRoot({
       config: {
          tokenGetter: PegarTokenUsuario,
-         allowedDomains: ['localhost:5001'],
+         allowedDomains: ['localhost:5000'],
          disallowedRoutes: []
       }
-    }),
+    })
   ],
   bootstrap: [AppComponent]
 })

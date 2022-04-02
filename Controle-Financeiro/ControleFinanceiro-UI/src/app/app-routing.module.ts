@@ -1,3 +1,4 @@
+import { IndexComponent } from './components/dashboard/index/index.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AtualizarCartaoComponent } from './components/Cartao/AtualizarCartao/AtualizarCartao.component';
@@ -16,6 +17,7 @@ import { NovaFuncaoComponent } from './components/Funcao/NovaFuncao/NovaFuncao.c
 import { AtualizarGanhoComponent } from './components/Ganho/atualizar-ganho/atualizar-ganho.component';
 import { ListagemGanhosComponent } from './components/Ganho/listagem-ganhos/listagem-ganhos.component';
 import { NovoGanhoComponent } from './components/Ganho/novo-ganho/novo-ganho.component';
+import { AtualizarUsuarioComponent } from './components/Usuario/atualizar-usuario/atualizar-usuario.component';
 import { LoginUsuarioComponent } from './components/Usuario/LoginUsuario/LoginUsuario.component';
 import { RegistrarUsuarioComponent } from './components/Usuario/RegistrarUsuario/RegistrarUsuario.component';
 import { AuthGuardService } from './services/AuthGuard.service';
@@ -73,6 +75,12 @@ const routes: Routes = [
       },
       {
         path: 'ganhos/atualizarganho/:id', component: AtualizarGanhoComponent
+      },
+      {
+        path: 'usuarios/atualizarusuario', component: AtualizarUsuarioComponent
+      },
+      {
+        path: 'dashboard/index', component: IndexComponent
       }
     ]
   },

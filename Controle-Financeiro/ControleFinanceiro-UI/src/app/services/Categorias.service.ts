@@ -34,7 +34,6 @@ pegarCategoriaPeloId(categoriaId: number): Observable<Categoria>{
 }
 
 novaCategoria(categoria: Categoria): Observable<any>{
-   console.log(localStorage.getItem('TokenUsuarioLogado'));
     return this.http.post<Categoria>(`${environment.URL_API}/categorias`, categoria, httpOptions);
 }
 

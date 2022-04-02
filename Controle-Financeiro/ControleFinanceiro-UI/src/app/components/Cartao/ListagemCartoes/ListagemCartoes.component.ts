@@ -2,10 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { Cartao } from 'src/app/models/Cartao';
 import { CartoesService } from 'src/app/services/Cartoes.service';
 import { DialogExclusaoCartaoComponent } from './DialogExclusaoCartao/DialogExclusaoCartao.component';
 
@@ -65,6 +66,8 @@ export class ListagemCartoesComponent implements OnInit {
       this.numeroCartoes = this.autoCompleteInput.valueChanges.pipe(startWith(''), map((numero) => this.filtrarCartoes(numero)));
   }
 
+
+
   exibirColunas(): string[] {
       return ['nome', 'bandeira', 'numero', 'limite', 'acoes'];
   }
@@ -85,6 +88,34 @@ export class ListagemCartoesComponent implements OnInit {
       return this.opcoesNumeros.filter(nc =>
         nc.toLowerCase().includes(numero.toLowerCase())
       );
+  }
+
+  sortData(sort: Sort){
+     const data = this.cartoes.data.slice();
+     if (!sort.active || sort.direction === '') {
+        this.cartoes.data = data;
+        return;
+     }
+
+     this.cartoes.data = data.sort((a: Cartao, b: Cartao) => {
+      const isAsc = sort.direction === 'asc';
+      switch (sort.active) {
+        case 'nome':
+          return this.compare(a.nome, b.nome, isAsc);
+        case 'bandeira':
+          return this.compare(a.bandeira, b.bandeira, isAsc);
+        case 'numero':
+          return this.compare(a.numero, b.numero, isAsc);
+        case 'limite':
+          return this.compare(a.limite, b.limite, isAsc);
+        default:
+          return 0;
+      }
+     });
+  }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) && (a.toString().localeCompare(b.toString())) * (isAsc ? 1 : -1);
   }
 
   abrirDialog(cartaoId, numero): void {

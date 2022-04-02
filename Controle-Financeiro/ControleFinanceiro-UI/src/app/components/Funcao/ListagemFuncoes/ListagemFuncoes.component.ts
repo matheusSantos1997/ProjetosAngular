@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -84,6 +84,30 @@ export class ListagemFuncoesComponent implements OnInit {
       }
 
       return this.opcoesFuncoes.filter((funcao) => funcao.toLowerCase().includes(nome.toLowerCase()));
+  }
+
+  sortData(sort: Sort) {
+    const data = this.funcoes.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.funcoes.data = data;
+      return;
+    }
+
+    this.funcoes.data = data.sort((a: Funcao, b: Funcao) => {
+     const isAsc = sort.direction === 'asc';
+     switch (sort.active) {
+       case 'nome':
+         return this.compare(a.name, b.name, isAsc);
+       case 'descricao':
+         return this.compare(a.descricao, b.descricao, isAsc);
+       default:
+         return 0;
+     }
+   })
+ }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) && (a.toString().localeCompare(b.toString())) * (isAsc ? 1 : -1);
   }
 
   abrirDialog(funcaoId, nome): void{

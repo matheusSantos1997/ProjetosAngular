@@ -12,14 +12,12 @@ import { FuncoesService } from 'src/app/services/Funcoes.service';
 export class NovaFuncaoComponent implements OnInit {
 
   formulario: any;
-  errors: string[];
 
   constructor(private router: Router,
               private funcoesService: FuncoesService,
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-      this.errors = [];
 
       this.formulario = new FormGroup({
           name: new FormControl(null, [Validators.required, Validators.maxLength(50)]),
@@ -33,7 +31,6 @@ export class NovaFuncaoComponent implements OnInit {
 
   enviarFormulario(): void {
       const funcao = this.formulario.value;
-      this.errors = [];
 
       this.funcoesService.novaFuncao(funcao).subscribe((resultado) => {
            this.router.navigate(['/funcoes/listagemfuncoes']);

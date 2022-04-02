@@ -13,7 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    color: #FFFFFF;
 }
 
-.v-align-middle { 
+.v-align-middle {
    vertical-align: middle !important;
    display: inline-flex;
    align-items: center;

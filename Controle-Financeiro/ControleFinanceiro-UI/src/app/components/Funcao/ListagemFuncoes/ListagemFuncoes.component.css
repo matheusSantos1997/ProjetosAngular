@@ -26,6 +26,11 @@
    width: 500px;
 }
 
+.divCard{
+  padding: 50px;
+  width: 600px;
+}
+
 .mat-form-field.mat-form-field{
   width: 500px;
 }

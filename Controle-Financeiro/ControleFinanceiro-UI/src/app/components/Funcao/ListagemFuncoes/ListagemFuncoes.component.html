@@ -33,7 +33,7 @@
            </form>
         </div>
 
-        <table *ngIf="funcoes" mat-table [dataSource]="funcoes" matSort class="mat-elevation-z8 tabela">
+        <table *ngIf="funcoes" mat-table [dataSource]="funcoes" matSort (matSortChange)="sortData($event)" matSortDisableClear class="mat-elevation-z8 tabela">
              <ng-container matColumnDef="nome">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
                 <td mat-cell *matCellDef="let funcao">{{funcao.name}}</td>

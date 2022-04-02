@@ -30,7 +30,7 @@
     </form>
   </div>
 
-    <table *ngIf="categorias" mat-table matSort [dataSource]="categorias" class="mat-elevation-z8 tabela">
+    <table mat-table matSort [dataSource]="categorias" (matSortChange)="sortData($event)" matSortDisableClear class="mat-elevation-z8 tabela" *ngIf="categorias">
        <!-- nomes das colunas-->
        <ng-container matColumnDef="nome">
          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
@@ -43,7 +43,7 @@
       </ng-container>
 
       <ng-container matColumnDef="tipo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
         <td mat-cell *matCellDef="let categoria">{{ categoria.tipo.nome }}</td>
       </ng-container>
 

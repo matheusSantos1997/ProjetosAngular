@@ -45,7 +45,7 @@
 
         <mat-card-actions>
           <div>
-            <button type="submit" mat-stroked-button color="primary"  (click)="enviarFormulario()">Salvar</button>
+            <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="enviarFormulario()">Salvar</button>
             <button mat-stroked-button type="button" (click)="voltarListagem()">Voltar</button>
           </div>
         </mat-card-actions>

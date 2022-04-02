@@ -21,7 +21,7 @@ import { IconSnackBarComponent } from '../../customs/icon-snack-bar.component';
 export class AtualizarDespesaComponent implements OnInit {
 
   despesa: Observable<Despesa>;
-  valorDespesa: number;
+  valorDespesa: any;
   formulario: any;
   cartoes: Cartao[];
   categorias: Categoria[];
@@ -53,13 +53,13 @@ export class AtualizarDespesaComponent implements OnInit {
       });
 
       this.despesaService.pegarDespesaPeloId(this.despesaId).subscribe((resultado) => {
-        this.valorDespesa = resultado.valor;
+        this.valorDespesa = resultado.valor.toFixed(2).replace('.', ',');
 
         this.formulario = new FormGroup({
           despesaId: new FormControl(resultado.despesaId),
           cartaoId: new FormControl(resultado.cartaoId, Validators.required),
-          descricao: new FormControl(resultado.descricao, 
-                        [Validators.required, 
+          descricao: new FormControl(resultado.descricao,
+                        [Validators.required,
                         Validators.minLength(1),
                         Validators.maxLength(50)]),
           categoriaId: new FormControl(resultado.categoriaId, Validators.required),
@@ -83,12 +83,12 @@ export class AtualizarDespesaComponent implements OnInit {
           this.snackBar.openFromComponent(IconSnackBarComponent, {
             data: {
                icon: 'done',
-               message: resultado.mensagem  
+               message: resultado.mensagem
             },
              duration: 2000,
              panelClass: ['snackbar-success'],
              horizontalPosition: 'right',
-             verticalPosition: 'top'   
+             verticalPosition: 'top'
         });
       }, (erro) => {
          if(erro.status === 400){
@@ -104,6 +104,19 @@ export class AtualizarDespesaComponent implements OnInit {
           });
          }
       });
+  }
+
+  somenteNumeros(e: any) {
+    let charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace
+    // charCode 9 = tab
+    if (charCode != 8 && charCode != 9) {
+        // charCode 48 equivale a 0
+        // charCode 57 equivale a 9
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
   }
 
   voltarListagem(): void {

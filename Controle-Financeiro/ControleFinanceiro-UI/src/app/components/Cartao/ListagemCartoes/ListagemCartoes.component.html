@@ -31,7 +31,7 @@
          </form>
        </div>
 
-       <table *ngIf="cartoes" mat-table [dataSource]="cartoes" matSort class="mat-elevation-z8 tabela">
+       <table *ngIf="cartoes" mat-table [dataSource]="cartoes" matSort (matSortChange)="sortData($event)" matSortDisableClear class="mat-elevation-z8 tabela">
          <ng-container matColumnDef="nome">
            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome</th>
            <td mat-cell *matCellDef="let cartao">{{ cartao.nome }}</td>
@@ -49,7 +49,7 @@
 
          <ng-container matColumnDef="limite">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Limite</th>
-          <td mat-cell *matCellDef="let cartao">{{ cartao.limite | currency:'R$' | ReplaceChange }}</td>
+          <td mat-cell *matCellDef="let cartao">R$:{{ cartao.limite.toFixed(2).replace('.', ',') }}</td>
          </ng-container>
 
          <ng-container matColumnDef="acoes">

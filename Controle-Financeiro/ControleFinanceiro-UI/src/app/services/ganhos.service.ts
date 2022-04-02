@@ -43,4 +43,9 @@ export class GanhosService {
        return this.http.delete<number>(apiUrl, httpOptions);
   }
 
+  filtrarGanhos(nomeCategoria: string): Observable<Ganho[]>{
+       const apiUrl = `${environment.URL_API}/ganhos/FiltrarGanhos/${nomeCategoria}`;
+       return this.http.get<Ganho[]>(apiUrl)
+  }
+
 }

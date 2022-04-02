@@ -10,4 +10,5 @@ export class Ganho {
      mesId: number;
      mes: Mes;
      ano: number;
+     usuarioId: string;
 }

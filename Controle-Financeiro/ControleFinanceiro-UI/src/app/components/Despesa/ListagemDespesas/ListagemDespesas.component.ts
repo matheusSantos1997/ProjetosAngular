@@ -1,8 +1,9 @@
+import { Despesa } from 'src/app/models/Despesa';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { DespesasService } from 'src/app/services/Despesas.service';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExclusaoDespesaComponent } from './DialogExclusaoDespesa/DialogExclusaoDespesa.component';
 import { FormControl } from '@angular/forms';
@@ -15,7 +16,7 @@ import { map, startWith } from 'rxjs/operators';
   styleUrls: ['./ListagemDespesas.component.css']
 })
 export class ListagemDespesasComponent implements OnInit {
-  
+
   despesas = new MatTableDataSource<any>();
   displayedColumns: string[];
   usuarioId: string = localStorage.getItem('UsuarioId');
@@ -42,7 +43,7 @@ export class ListagemDespesasComponent implements OnInit {
             resultado.forEach(despesa => {
                 this.opcoesCategorias.push(despesa.categoria.nome);
             });
-            
+
             this.despesas.data = resultado;
             this.despesas.paginator = this.paginator;
             this.despesas.sort = this.sort;
@@ -85,6 +86,36 @@ export class ListagemDespesasComponent implements OnInit {
 
       return this.opcoesCategorias.filter(
          despesa => despesa.toLowerCase().includes(nomeCategoria.toLowerCase()));
+  }
+
+  sortData(sort: Sort) {
+    const data = this.despesas.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.despesas.data = data;
+      return;
+    }
+
+    this.despesas.data = data.sort((a: Despesa, b: Despesa) => {
+     const isAsc = sort.direction === 'asc';
+     switch (sort.active) {
+       case 'numero':
+         return this.compare(a.cartao.numero, b.cartao.numero, isAsc);
+       case 'descricao':
+         return this.compare(a.descricao, b.descricao, isAsc);
+       case 'categoria':
+         return this.compare(a.categoria.icone, b.categoria.icone, isAsc);
+       case 'valor':
+         return this.compare(a.valor, b.valor, isAsc);
+       case 'data':
+         return this.compare(a.ano, b.ano, isAsc);
+       default:
+         return 0;
+     }
+   })
+ }
+
+  compare(a: number | string, b: number | string, isAsc: boolean) {
+    return (a < b ? -1 : 1) && (a.toString().localeCompare(b.toString())) * (isAsc ? 1 : -1);
   }
 
   abrirDialog(despesaId: number, valor: number): void {

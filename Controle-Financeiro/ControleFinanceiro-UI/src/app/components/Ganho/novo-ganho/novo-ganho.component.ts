@@ -58,7 +58,7 @@ export class NovoGanhoComponent implements OnInit {
   enviarFormulario(): void {
       const ganho = this.formulario.value;
       this.ganhosService.novoGanho(ganho).subscribe((resultado) => {
-          // this.router.navigate(['/ganhos/listagemganhos']);
+          this.router.navigate(['/ganhos/listagemganhos']);
           this.snackBar.openFromComponent(IconSnackBarComponent, {
             data: {
                icon: 'done',
@@ -83,6 +83,19 @@ export class NovoGanhoComponent implements OnInit {
                });
            }
       });
+  }
+
+  somenteNumeros(e: any) {
+    let charCode = e.charCode ? e.charCode : e.keyCode;
+    // charCode 8 = backspace
+    // charCode 9 = tab
+    if (charCode != 8 && charCode != 9) {
+        // charCode 48 equivale a 0
+        // charCode 57 equivale a 9
+        if (charCode < 48 || charCode > 57) {
+            return false;
+        }
+    }
   }
 
   voltarListagem(): void {

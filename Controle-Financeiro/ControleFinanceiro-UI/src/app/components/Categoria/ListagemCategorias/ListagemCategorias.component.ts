@@ -7,7 +7,8 @@ import { CategoriasService } from 'src/app/services/Categorias.service';
 import { DialogExclusaoCategoriaComponent } from './DialogExclusaoCategoria/DialogExclusaoCategoria.component';
 import { startWith, map } from 'rxjs/operators';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatSort, Sort } from '@angular/material/sort';
+import { Categoria } from 'src/app/models/Categoria';
 
 @Component({
   selector: 'app-ListagemCategorias',
@@ -70,6 +71,32 @@ export class ListagemCategoriasComponent implements OnInit {
       this.nomesCategorias = this.autoCompleteInput.valueChanges
           .pipe(startWith(''), map((nome) => this.filtrarNomes(nome)));
   }
+
+  sortData(sort: Sort) {
+    const data = this.categorias.data.slice();
+    if (!sort.active || sort.direction === '') {
+      this.categorias.data = data;
+      return;
+    }
+
+    this.categorias.data = data.sort((a: Categoria, b: Categoria) => {
+     const isAsc = sort.direction === 'asc';
+     switch (sort.active) {
+       case 'nome':
+         return this.compare(a.nome, b.nome, isAsc);
+       case 'icone':
+         return this.compare(a.icone, b.icone, isAsc);
+       case 'tipo':
+         return this.compare(a.tipo.nome, b.tipo.nome, isAsc);
+       default:
+         return 0;
+     }
+   })
+ }
+
+ compare(a: number | string, b: number | string, isAsc: boolean) {
+   return (a < b ? -1 : 1) && (a.toString().localeCompare(b.toString())) * (isAsc ? 1 : -1);
+ }
 
   abrirDialog(categoriaId, nome): void{
      this.dialog.open(DialogExclusaoCategoriaComponent, {

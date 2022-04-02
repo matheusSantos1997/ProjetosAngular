@@ -11,7 +11,7 @@
             <mat-form-field>
                <mat-label>Email</mat-label>
                <input matInput type="email" formControlName="email" placeholder="Digite seu email"
-               required minlength="10" maxlength="50" />
+               required minlength="10" maxlength="50" autocomplete="off" />
                <mat-error *ngIf="propriedade.email.touched && propriedade.email.invalid">
                  <sup>*</sup> Digite o seu email
                </mat-error>
@@ -31,7 +31,7 @@
             <mat-form-field>
                <mat-label>Senha</mat-label>
                <input matInput type="password" formControlName="senha" placeholder="Digite sua senha"
-               required minlength="6" maxlength="50" />
+               required minlength="6" maxlength="50" autocomplete="off" />
                <mat-error *ngIf="propriedade.senha.touched && propriedade.senha.invalid">
                  <sup>*</sup> Digite o sua senha
                </mat-error>
