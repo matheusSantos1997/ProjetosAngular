@@ -1,0 +1,7 @@
+thead>tr>th {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+}

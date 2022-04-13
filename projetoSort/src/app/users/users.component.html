@@ -1,0 +1,25 @@
+<h1>Lista de usuários</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+        <th (click)="sortData('nome')">
+          Nome
+          <span>{{reverse ? '↑' : '↓'}}</span>
+        </th>
+        <th (click)="sortData('endereco')">
+          Endereço
+          <span>{{reverse ? '↑' : '↓'}}</span>
+        </th>
+        <th (click)="sortData('email')">
+          Email
+          <span>{{reverse ? '↑' : '↓'}}</span>
+        </th>
+    </tr>
+</thead>
+<tr *ngFor="let usuario of usuarios | orderBy: orderColumn: reverse: caseInsensitive: customComparator">
+  <td>{{usuario.nome}}</td>
+  <td>{{usuario.endereco}}</td>
+  <td>{{usuario.email}}</td>
+</tr>
+</table>
