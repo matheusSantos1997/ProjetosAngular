@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-users',
@@ -9,8 +9,8 @@ export class UsersComponent implements OnInit {
 
   // Configuração da ordenação
   orderColumn: string = 'nome'; // Define um valor padrão, para quando inicializar o componente
-  reverse: boolean = true;
-  caseInsensitive: boolean = false
+  reverse: boolean = false;
+  caseInsensitive: boolean = true;
 
   constructor() { }
 
@@ -19,19 +19,14 @@ export class UsersComponent implements OnInit {
   }
 
   usuarios = [
-    {nome: 'A', endereco: 'A', email: 'a'},
-    {nome: 'B', endereco: 'B', email: 'b'},
-    {nome: 'C', endereco: 'C', email: 'c' }
+    {nome: 'casa', endereco: 'A', email: 'a'},
+    {nome: 'Barco', endereco: 'B', email: 'b'},
+    {nome: 'area', endereco: 'C', email: 'c' }
  ];
 
   sortData(columnSort: string) {
      this.orderColumn = columnSort;
-
      this.reverse = !this.reverse;
    }
-
-   customComparator(itemA: string, itemB: string) {
-    return itemA > itemB ? 1 : -1;
-}
 
 }

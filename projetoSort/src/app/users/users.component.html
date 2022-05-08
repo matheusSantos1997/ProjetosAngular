@@ -3,21 +3,21 @@
 <table border="1">
   <thead>
     <tr>
-        <th (click)="sortData('nome')">
+        <th (click)="sortData('nome')"> <!-- ↑ ↓-->
           Nome
-          <span>{{reverse ? '↑' : '↓'}}</span>
+          <span>{{reverse ? '▲' : '▼'}}</span>
         </th>
         <th (click)="sortData('endereco')">
           Endereço
-          <span>{{reverse ? '↑' : '↓'}}</span>
+          <span>{{reverse ? '▲' : '▼'}}</span>
         </th>
         <th (click)="sortData('email')">
           Email
-          <span>{{reverse ? '↑' : '↓'}}</span>
+          <span>{{reverse ? '▲' : '▼'}}</span>
         </th>
     </tr>
 </thead>
-<tr *ngFor="let usuario of usuarios | orderBy: orderColumn: reverse: caseInsensitive: customComparator">
+<tr *ngFor="let usuario of usuarios | orderBy: orderColumn: this.reverse: this.caseInsensitive">
   <td>{{usuario.nome}}</td>
   <td>{{usuario.endereco}}</td>
   <td>{{usuario.email}}</td>
