@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "menuResponsive": {
+    "menuResponsivo": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/menuResponsive",
+            "outputPath": "dist/menuResponsivo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "menuResponsive:build"
+            "browserTarget": "menuResponsivo:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "menuResponsive:build:production"
+              "browserTarget": "menuResponsivo:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "menuResponsive:build"
+            "browserTarget": "menuResponsivo:build"
           }
         },
         "test": {
@@ -112,19 +112,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "menuResponsive:serve"
+            "devServerTarget": "menuResponsivo:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "menuResponsive:serve:production"
+              "devServerTarget": "menuResponsivo:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "menuResponsive",
+  "defaultProject": "menuResponsivo",
   "cli": {
-    "analytics": "7d579fc0-96c2-4c94-8a77-c8cf66ab9baf"
+    "analytics": "15014fb6-54da-45f6-ab70-7b7d6ae4dedf"
   }
 }
