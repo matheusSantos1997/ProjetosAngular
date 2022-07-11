@@ -11,18 +11,18 @@ export class EventoService {
 
   constructor(private http: HttpClient) { }
 
-public getEventos(): Observable<Evento[]> {
-      const apiUrl = `${environment.apiLocal}/eventos`;
-      return this.http.get<Evento[]>(apiUrl);
+  public getEventos(): Observable<Evento[]> {
+    const apiUrl = `${environment.apiLocal}/eventos`;
+    return this.http.get<Evento[]>(apiUrl);
   }
 
-public getEventosByTema(tema: string): Observable<Evento[]> {
-      const apiUrl = `${environment.apiLocal}/eventos/tema/${tema}`;
-      return this.http.get<Evento[]>(apiUrl);
+  public getEventosByTema(tema: string): Observable<Evento[]> {
+     const apiUrl = `${environment.apiLocal}/eventos/tema/${tema}`;
+     return this.http.get<Evento[]>(apiUrl);
   }
 
-public getEventoById(id: number): Observable<Evento> {
-      const apiUrl = `${environment.apiLocal}/eventos/${id}`;
-      return this.http.get<Evento>(apiUrl);
+  public getEventoById(id: number): Observable<Evento> {
+    const apiUrl = `${environment.apiLocal}/eventos/${id}`;
+    return this.http.get<Evento>(apiUrl);
   }
 }

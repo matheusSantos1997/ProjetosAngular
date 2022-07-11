@@ -1,4 +1,6 @@
+import { MapsAPILoader } from '@agm/core';
 import { Component, OnInit } from '@angular/core';
+import { GetGeolocationService } from '../services/get-geolocation.service';
 
 @Component({
   selector: 'app-maps',
@@ -7,25 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private geoLocationService: GetGeolocationService, private mapsAPILoader: MapsAPILoader) { }
 
   ngOnInit(): void {
+     this.initMap();
   }
 
   title: string = 'My first AGM project';
-  lat: number = -23.9496523;
-  lng: number = -46.398153;
-  zoom: number = 15;
+  markerTitle: string = 'Localização atual';
+  lat: number;
+  lng: number;
+  zoom: number = 13;
+  coordinates: any;
+
+  map: any;
 
   initMap(): void {
-    let map: google.maps.Map;
-    const center: google.maps.LatLngLiteral = {lat: 30, lng: -110};
-
-    map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-       center,
-       zoom: 8
-    })
-
+    this.geoLocationService.getPosition().subscribe(
+      (pos) => {
+          this.lat = pos.coords.latitude;
+          this.lng = pos.coords.longitude
+      });
   }
 
 }

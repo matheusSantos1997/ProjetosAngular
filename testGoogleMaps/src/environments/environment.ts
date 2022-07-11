@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  googleMapsApi: 'AIzaSyBngrwyN4D7Q_TmYgv1pxnoru5L_DGlNDI'
+  googleMapsApi: 'YOUR_API_KEY_HERE'
 };
 
 /*

@@ -16,7 +16,8 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
-      apiKey: environment.googleMapsApi
+      apiKey: environment.googleMapsApi,
+      libraries: ['places']
     })
   ],
   providers: [],

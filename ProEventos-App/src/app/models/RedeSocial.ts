@@ -9,5 +9,4 @@ export interface RedeSocial {
      evento: Evento;
      palestranteId?: number;
      palestrante: Palestrante;
-
 }
