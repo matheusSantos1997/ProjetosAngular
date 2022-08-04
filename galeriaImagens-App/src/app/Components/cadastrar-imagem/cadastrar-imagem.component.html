@@ -1,0 +1,38 @@
+<div *ngIf="!formulario">
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+<div class="divCard">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title><h3>Cadastro de imagens</h3></mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="formulario">
+      <mat-card-content>
+      <div class="divFoto" *ngIf="this.file else tipoDiferente">
+        <img hidden id="foto" src="#" width="300" height="200" />
+      </div>
+      <ng-template #tipoDiferente></ng-template>
+      <input hidden type="file" #fileInput name="foto" formControlName="URLImagem" required (change)="onFileChange($event)" />
+      <br/><br/>
+       <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
+       Escolha a imagem
+      </button>
+      <div id="campo" *ngIf="formulario.get('URLImagem').hasError('required') &&
+             formulario.get('URLImagem').touched" class="invalid-feedback">
+            O campo de imagem é obrigatório
+    </div><br><br>
+      <br><br>
+    </mat-card-content>
+       <mat-divider></mat-divider>
+
+       <mat-card-actions>
+         <div>
+           <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="salvarImagem()">Salvar</button>
+           <button mat-stroked-button type="button" (click)="voltarListagem()">Voltar</button>
+         </div>
+       </mat-card-actions>
+    </form>
+  </mat-card>
+</div>

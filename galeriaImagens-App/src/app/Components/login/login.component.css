@@ -1,0 +1,17 @@
+.loginFormulario{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.mat-form-field.mat-form-field{
+  width: 500px;
+}
+
+.botoes{
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.formulario {
+   padding-top: 25px;
+}

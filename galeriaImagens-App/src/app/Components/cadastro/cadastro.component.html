@@ -1,0 +1,90 @@
+<div fxLayout="row" fxLayoutAlign="center end" class="registroFormulario">
+  <div class="divFormulario">
+     <h1>Cadastro de usuários</h1>
+
+     <mat-divider></mat-divider>
+
+     <div class="formulario">
+        <form [formGroup]="formulario">
+
+                  <div>
+                     <mat-form-field>
+                         <mat-label>Nome</mat-label>
+                         <input matInput type="text" placeholder="Digite o seu nome" formControlName="nome" required />
+                         <mat-error *ngIf="formulario.controls.nome.hasError('required')">
+                           O campo de nome é obrigatório
+                        </mat-error>
+                     </mat-form-field>
+                  </div>
+
+                  <div>
+                    <mat-form-field>
+                        <mat-label>CPF</mat-label>
+                        <input matInput type="text" placeholder="Digite o seu CPF" formControlName="cpf" required autocomplete="off" mask="000.000.000-00" />
+                        <mat-error *ngIf="formulario.controls.cpf.hasError('required')">
+                          O campo de cpf é obrigatório
+                       </mat-error>
+                    </mat-form-field>
+                 </div>
+
+                 <div>
+                  <mat-form-field>
+                      <mat-label>Profissão</mat-label>
+                      <input matInput type="text" placeholder="Digite a sua profissao" formControlName="profissao" required />
+                      <mat-error *ngIf="formulario.controls.profissao.hasError('required')">
+                        O campo profissao é obrigatório
+                     </mat-error>
+                  </mat-form-field>
+               </div>
+
+               <div>
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" placeholder="Digite o seu email" formControlName="email" required />
+                    <mat-error *ngIf="formulario.controls.email.hasError('required')">
+                        O campo email é obrigatório
+                    </mat-error>
+                </mat-form-field>
+             </div>
+
+             <div>
+              <mat-form-field>
+                  <mat-label>Nome Usuario</mat-label>
+                  <input matInput type="text" placeholder="Digite a sua senha" formControlName="nomeUsuario" required />
+                  <mat-error *ngIf="formulario.controls.nomeUsuario.hasError('required')">
+                    O campo nome de usuario é obrigatório
+                  </mat-error>
+              </mat-form-field>
+           </div>
+
+             <div>
+              <mat-form-field>
+                  <mat-label>Senha</mat-label>
+                  <input matInput type="password" placeholder="Digite a sua senha" formControlName="senha" required />
+                  <mat-error *ngIf="formulario.controls.senha.hasError('required')">
+                    O campo senha é obrigatório
+                  </mat-error>
+              </mat-form-field>
+           </div>
+            <br/>
+            <mat-divider></mat-divider>
+
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" class="botoes">
+               <div>
+                  <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="salvarFormulario()">
+                     Registrar
+                  </button>
+
+               </div>
+               <div>
+                <button type="button" mat-stroked-button color="accent" routerLink="/usuario/login">
+                   Já tenho conta
+                </button>
+             </div>
+               <div>
+             </div>
+            </div>
+        </form>
+     </div>
+  </div>
+</div>

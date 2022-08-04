@@ -1,0 +1,13 @@
+.divCard{
+  padding: 50px;
+  width: 600px;
+}
+
+.mat-form-field.mat-form-field{
+   width: 500px;
+}
+
+.invalid-feedback {
+  font-size: 15px;
+  color: #e70f0f;
+}

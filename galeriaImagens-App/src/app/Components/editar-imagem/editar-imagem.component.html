@@ -1,0 +1,39 @@
+<div *ngIf="!formularioEditar">
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
+
+<div class="divCard">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h3>Editar imagens cadastradas</h3></mat-card-title>
+      </mat-card-header>
+    </mat-card>
+
+    <form [formGroup]="formularioEditar" *ngIf="this.formularioEditar">
+       <mat-card-content>
+        <div class="divFoto" *ngIf="this.imagemAnterior else tipoDiferente">
+          <img id="foto" *ngIf="this.imagemAnterior" [src]="this.imagem" width="300" height="200" />
+        </div>
+        <ng-template #tipoDiferente></ng-template>
+        <input hidden type="file" #fileInput name="foto" formControlName="URLImagem" required (change)="onFileChange($event)" />
+        <br/><br/>
+         <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
+         Escolha a imagem
+        </button>
+        <div id="campo" *ngIf="formularioEditar.get('URLImagem').hasError('required') &&
+        formularioEditar.get('URLImagem').touched" class="invalid-feedback">
+              O campo de imagem é obrigatório
+      </div><br><br>
+        <br><br>
+
+       </mat-card-content>
+       <mat-divider></mat-divider>
+
+       <mat-card-actions>
+         <div>
+           <button type="submit" mat-stroked-button color="primary" [disabled]="formularioEditar.invalid" (click)="salvarImagem()">Salvar</button>
+           <button mat-stroked-button type="button" (click)="voltarListagem()">Voltar</button>
+         </div>
+       </mat-card-actions>
+    </form>
+</div>
