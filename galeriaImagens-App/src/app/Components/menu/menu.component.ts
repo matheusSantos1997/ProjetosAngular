@@ -18,8 +18,8 @@ export class MenuComponent implements OnInit {
 
   efetuarLogout(): void {
      localStorage.clear();
+     localStorage.removeItem('token');
      this.router.navigateByUrl('usuario/login');
-     location.reload();
   }
 
 }

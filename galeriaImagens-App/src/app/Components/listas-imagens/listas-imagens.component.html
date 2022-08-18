@@ -25,7 +25,7 @@
 
     <ng-container matColumnDef="imagem">
      <th mat-header-cell *matHeaderCellDef mat-sort-header>Imagem</th>
-     <td mat-cell *matCellDef="let imagem"><mat-icon><img src="http://localhost:5000/Images/{{imagem.nome}}" [style.width.px]="imagemLargura" [style.margin.px]="imagemMargem"></mat-icon></td>
+     <td mat-cell *matCellDef="let imagem"><mat-icon><img [src]="imagem.nome" [style.width.px]="imagemLargura" [style.margin.px]="imagemMargem"></mat-icon></td>
    </ng-container>
 
    <ng-container matColumnDef="salvoEm">

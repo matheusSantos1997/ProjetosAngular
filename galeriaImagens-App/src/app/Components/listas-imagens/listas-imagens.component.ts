@@ -17,6 +17,7 @@ export class ListasImagensComponent implements OnInit {
   displayedColumns: string[];
   imagens = new MatTableDataSource<Imagem>();
   usuarioId: any = localStorage.getItem('UsuarioId');
+  pathToImage: string;
 
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
@@ -32,9 +33,16 @@ export class ListasImagensComponent implements OnInit {
   }
 
   getAllImagensByUsuarioId() {
+
     this.imagemService.getAllImagensByUsuarioId(this.usuarioId).subscribe((response) => {
        this.imagens.data = response;
        this.imagens.paginator = this.paginator;
+
+       this.imagens.data.forEach(i => {
+        if(i.nome !== '') {
+          i.nome = `http://localhost:5000/Images/${i.nome}`;
+        }
+       });
 
        // renomeia os nomes dos botoes da paginação
        this.paginator._intl.itemsPerPageLabel = 'Itens por página';
@@ -65,6 +73,13 @@ export class ListasImagensComponent implements OnInit {
            // debugger;
            this.imagemService.getImagens().subscribe((dados) => {
               this.imagens.data = dados;
+
+              this.imagens.data.forEach(i => {
+                if(i.nome !== '') {
+                  i.nome = `http://localhost:5000/Images/${i.nome}`;
+                }
+               });
+
            });
            this.displayedColumns = this.exibirColunas();
         }
