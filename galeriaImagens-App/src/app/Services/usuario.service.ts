@@ -1,9 +1,10 @@
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../Models/Usuario';
 import { UsuarioLogin } from '../Models/UsuarioLogin';
+import { tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -11,17 +12,13 @@ const httpOptions = {
   })
 };
 
-const httpOptionsAuthorization = {
-  headers: new HttpHeaders({
-    'Content-Type' : 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  private subjUser$: BehaviorSubject<Usuario> = new BehaviorSubject(null);
+  private subjLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +29,24 @@ export class UsuarioService {
 
   logarUsuario(usuarioLogin: UsuarioLogin): Observable<any> {
      const apiUrl = `${environment.urlApi}Usuarios/LoginUsuario`;
-     return this.http.post<any>(apiUrl, usuarioLogin, httpOptions);
+     return this.http.post<any>(apiUrl, usuarioLogin, httpOptions)
+                     .pipe(tap((u: Usuario) => {
+                           localStorage.setItem('TokenUsuarioLogado', u.token);
+                           this.subjLoggedIn$.next(true);
+                           this.subjUser$.next(u);
+                      })
+    );
+  }
+
+  getUser(): Observable<Usuario> {
+    return this.subjUser$.asObservable();
+  }
+
+  logout() {
+    localStorage.removeItem('TokenUsuarioLogado');
+    localStorage.clear();
+    this.subjLoggedIn$.next(false);
+    this.subjUser$.next(null);
+    // localStorage.clear();
   }
 }

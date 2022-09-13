@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Imagem } from 'src/app/Models/Imagem';
+import { HTMLInputEvent } from 'src/app/GenericInterfaces/html-input-event';
 
 @Component({
   selector: 'app-editar-imagem',
@@ -40,7 +41,7 @@ export class EditarImagemComponent implements OnInit {
        });
     }
 
-  onFileChange(event: any) {
+  onFileChange(event: HTMLInputEvent) {
     this.file = event.target.files[0] as File;
 
       const reader = new FileReader();

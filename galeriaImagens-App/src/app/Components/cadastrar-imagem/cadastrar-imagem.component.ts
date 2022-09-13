@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { HTMLInputEvent } from 'src/app/GenericInterfaces/html-input-event';
 import { Imagem } from 'src/app/Models/Imagem';
 import { ImagemService } from 'src/app/services/imagem.service';
 
@@ -28,7 +29,7 @@ export class CadastrarImagemComponent implements OnInit {
     })
   }
 
-  onFileChange(event: any) {
+  onFileChange(event: HTMLInputEvent) {
     this.file = event.target.files[0] as File;
 
       const reader = new FileReader();

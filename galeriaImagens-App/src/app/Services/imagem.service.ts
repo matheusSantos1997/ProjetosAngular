@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('token')}`
+    'Authorization': `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
   })
 }
 
@@ -35,16 +35,16 @@ export class ImagemService {
 
   postUpload(file: FormData): Observable<Imagem> {
       const apiUrl = `${environment.urlApi}Imagens/UploadImagem`;
-      return this.http.post<Imagem>(apiUrl, file, httpOptions);
+      return this.http.post<Imagem>(apiUrl, file);
   }
 
   putUpload(id: number, file: FormData): Observable<Imagem> {
     const apiUrl = `${environment.urlApi}Imagens/UpdateImagem/${id}`;
-    return this.http.put<Imagem>(apiUrl, file, httpOptions);
+    return this.http.put<Imagem>(apiUrl, file);
   }
 
   deleteUpload(id: number): Observable<Imagem> {
      const apiUrl = `${environment.urlApi}Imagens/DeleteImagem/${id}`;
-     return this.http.delete<Imagem>(apiUrl, httpOptions);
+     return this.http.delete<Imagem>(apiUrl);
   }
 }

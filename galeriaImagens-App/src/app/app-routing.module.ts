@@ -9,14 +9,14 @@ import { LoginComponent } from './Components/login/login.component';
 import { AuthGuardService } from './Services/auth-guard.service';
 
 const routes: Routes = [
-   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
+   { path: '', component: DashboardComponent, canActivate: [AuthGuardService]},
    { path: 'imagens', component: ListasImagensComponent, canActivate: [AuthGuardService]},
    { path: 'imagens/cadastrar', component: CadastrarImagemComponent, canActivate: [AuthGuardService]},
    { path: 'imagens/atualizar/:id', component: EditarImagemComponent, canActivate: [AuthGuardService]},
    { path: 'usuario/cadastro', component: CadastroComponent},
    { path: 'usuario/login', component: LoginComponent },
-   { path: '', redirectTo: 'usuario/login', pathMatch: 'full' },
-   { path: '**', redirectTo: 'usuario/login', pathMatch: 'full' },
+   { path: '', redirectTo: 'imagens', pathMatch: 'full' },
+   { path: '**', redirectTo: 'imagens', pathMatch: 'full' },
 
 ];
 

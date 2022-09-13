@@ -19,14 +19,18 @@ export class CadastroComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-     this.formulario = this.fb.group({
-        nome: new FormControl(null, [Validators.required]),
-        email: new FormControl(null, [Validators.required]),
-        cpf: new FormControl(null, [Validators.required]),
-        profissao: new FormControl(null, [Validators.required]),
-        nomeUsuario: new FormControl(null, [Validators.required]),
-        senha: new FormControl(null, [Validators.required])
-     })
+
+  }
+
+  validarFormulario(): void {
+    this.formulario = this.fb.group({
+      nome: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      cpf: new FormControl(null, [Validators.required]),
+      profissao: new FormControl(null, [Validators.required]),
+      nomeUsuario: new FormControl(null, [Validators.required]),
+      senha: new FormControl(null, [Validators.required])
+   })
   }
 
   salvarFormulario(): void {

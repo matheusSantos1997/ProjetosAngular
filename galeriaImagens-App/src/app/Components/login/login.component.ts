@@ -30,16 +30,17 @@ export class LoginComponent implements OnInit {
   salvarFormulario(): void {
     const usuario = this.formulario.value;
     this.bLoading = true;
-    this.usuarioService.logarUsuario(usuario).pipe(delay(1000)).subscribe((response) => {
+    this.usuarioService.logarUsuario(usuario).subscribe((response) => {
       const emailUsuarioLogado = response.emailUsuarioLogado;
       const usuarioId = response.usuarioId;
-      const tokenUsuarioLogado = response.token;
+      const tokenUsuarioLogado = response.tokenUsuario;
+
       localStorage.setItem('EmailUsuarioLogado', emailUsuarioLogado);
       localStorage.setItem('UsuarioId', usuarioId);
-      localStorage.setItem('token', tokenUsuarioLogado);
+      localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
       this.bLoading = false;
 
-      this.router.navigate(['/imagens']);
+      this.router.navigate(['imagens']);
 
       this.snackBar.open('Bem vindo usuário.', null, {
         duration: 2000,

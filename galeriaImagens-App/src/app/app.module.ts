@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -19,10 +19,11 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginComponent } from './Components/login/login.component';
 import { CadastroComponent } from './Components/cadastro/cadastro.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { AuthInterceptor } from './Services/auth.interceptor';
 
 
 export function PegarTokenUsuario(){
-  return localStorage.getItem('token');
+  return localStorage.getItem('TokenUsuarioLogado');
 }
 
 @NgModule({
@@ -55,7 +56,9 @@ export function PegarTokenUsuario(){
       }
     })
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
