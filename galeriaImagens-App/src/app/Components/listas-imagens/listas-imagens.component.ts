@@ -22,6 +22,8 @@ export class ListasImagensComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true })
   paginator: MatPaginator;
 
+  bLoading: boolean = false;
+
   constructor(private imagemService: ImagemService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -55,7 +57,7 @@ export class ListasImagensComponent implements OnInit {
              page * pageSize + 1 + ' - ' + (page * pageSize + pageSize) + ' de ' + length
            );
        };
-
+       this.bLoading = false;
 
     }, (error) => {
        console.log(error);

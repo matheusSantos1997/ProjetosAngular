@@ -1,8 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/Services/usuario.service';
-import { Usuario } from 'src/app/Models/Usuario';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,20 +9,21 @@ import { Observable } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
-  // emailUsuarioLogado = localStorage.getItem('EmailUsuarioLogado');
-  user$: Observable<Usuario>;
+  tokenUsuarioLogado = localStorage.getItem('TokenUsuarioLogado');
+  usuarioId = localStorage.getItem('UsuarioId');
+  emailUsuarioLogado = localStorage.getItem('EmailUsuarioLogado');
 
-  constructor(private usuarioService: UsuarioService, private router: Router) {
-      this.user$ = this.usuarioService.getUser();
-  }
+  constructor(private usuarioService: UsuarioService, private router: Router) {}
 
   ngOnInit(): void {
 
   }
 
-  efetuarLogout(): void {
-     this.usuarioService.logout();
-     this.router.navigateByUrl('usuario/login');
+  logout(): void {
+    this.usuarioService.logout();
+    this.router.navigateByUrl('usuario/login');
+    location.reload();
   }
+
 
 }

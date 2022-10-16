@@ -34,7 +34,7 @@ export class CadastrarImagemComponent implements OnInit {
 
       const reader = new FileReader();
 
-      if(this.file.type !== 'image/jpeg' && this.file.type !== 'image/png') {
+      if(this.file.type !== 'image/jpeg' && this.file.type !== 'image/png' && this.file.type === '') {
         this.snackBar.open("Formato inválido", null, {
           duration: 2000,
           panelClass: ['snackbar-error'],

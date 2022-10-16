@@ -6,7 +6,6 @@
 
      <div class="formulario">
         <form [formGroup]="formulario">
-
                   <div>
                      <mat-form-field>
                          <mat-label>Nome</mat-label>
@@ -71,7 +70,7 @@
 
             <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end center" class="botoes">
                <div>
-                  <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="salvarFormulario()">
+                  <button type="submit" mat-stroked-button color="primary" [disabled]="formulario.invalid" (click)="cadastrarUsuario()">
                      Registrar
                   </button>
 

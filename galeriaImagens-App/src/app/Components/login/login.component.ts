@@ -27,31 +27,31 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  salvarFormulario(): void {
+  logar(): void {
     const usuario = this.formulario.value;
     this.bLoading = true;
     this.usuarioService.logarUsuario(usuario).subscribe((response) => {
+
       const emailUsuarioLogado = response.emailUsuarioLogado;
       const usuarioId = response.usuarioId;
       const tokenUsuarioLogado = response.tokenUsuario;
-
       localStorage.setItem('EmailUsuarioLogado', emailUsuarioLogado);
       localStorage.setItem('UsuarioId', usuarioId);
       localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
+
       this.bLoading = false;
-
-      this.router.navigate(['imagens']);
-
+      this.router.navigateByUrl('imagens');
       this.snackBar.open('Bem vindo usuário.', null, {
         duration: 2000,
         panelClass: ['snackbar-success'],
         horizontalPosition: 'right',
         verticalPosition: 'top'
-    });
+     });
+
 
     }, (error) => {
       this.bLoading = false;
-       if(error.status === 404) {
+       if(error.status === 401){
         this.snackBar.open('Usuário e/ou senha incorretos.', null, {
           duration: 2000,
           panelClass: ['snackbar-error'],
@@ -59,12 +59,7 @@ export class LoginComponent implements OnInit {
           verticalPosition: 'top'
         });
        } else {
-        this.snackBar.open('Algo deu errado!', null, {
-          duration: 2000,
-          panelClass: ['snackbar-error'],
-          horizontalPosition: 'right',
-          verticalPosition: 'top'
-        });
+         console.log(error);
        }
     })
   }
