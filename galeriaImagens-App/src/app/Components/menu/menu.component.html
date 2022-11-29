@@ -1,7 +1,7 @@
 <mat-toolbar fxLayout="row" color="primary">
   <span style="cursor: pointer;" fxFlex routerLink="/dashboard">Galeria de imagens</span>
 
-  <ng-container *ngIf="!tokenUsuarioLogado && !usuarioId && !emailUsuarioLogado">
+  <!-- <ng-container>
     <button mat-button fxHide.xs routerLink="/usuario/login">
       <mat-icon>input</mat-icon>
       &nbsp;Login
@@ -11,11 +11,11 @@
       <mat-icon>person_add</mat-icon>
       &nbsp;Cadastro
    </button>
-  </ng-container>
+  </ng-container> -->
 
-   <ng-container *ngIf="tokenUsuarioLogado && usuarioId && emailUsuarioLogado">
+   <ng-container *ngIf="emailUsuarioLogado">
    <button mat-button fxHide.xs (click)="logout()">
-    <mat-icon>person_add</mat-icon>
+    <mat-icon>logout</mat-icon>
     &nbsp;Sair
   </button>
   </ng-container>

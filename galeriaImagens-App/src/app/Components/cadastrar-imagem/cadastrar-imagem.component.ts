@@ -23,8 +23,12 @@ export class CadastrarImagemComponent implements OnInit {
               private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+     this.validationForm();
+  }
+
+  validationForm() {
     this.formulario = this.fb.group({
-      URLImagem: new FormControl(null, [Validators.required]),
+      nome: new FormControl(null, [Validators.required]),
       usuarioId: new FormControl(this.usuarioId)
     })
   }

@@ -16,9 +16,6 @@ const httpOptions = {
 })
 export class UsuarioService {
 
-  private subjUser$: BehaviorSubject<Usuario> = new BehaviorSubject(null);
-    private subjLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
   constructor(private http: HttpClient) { }
 
   logarUsuario(model: UsuarioLogin): Observable<any> {
@@ -34,9 +31,5 @@ export class UsuarioService {
   logout(): void {
     localStorage.removeItem('TokenUsuarioLogado');
     localStorage.clear();
-  }
-
-  getUser(): Observable<Usuario> {
-    return this.subjUser$.asObservable();
   }
 }

@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div *ngIf="!imagens">
   <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div>
@@ -45,6 +46,7 @@
    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 
  </table>
-
- <mat-paginator [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 15]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [length]="pagination.totalItems" [pageSize]="pagination.itemsPerPage"  [pageSizeOptions]="[3, 5, 10]" (page)="pageEvent = $event; pageChanged($event)" showFirstLastButtons></mat-paginator>
+  <!-- <mat-paginator [pageSize]="3" [pageSizeOptions]="[3, 5, 10, 15]" showFirstLastButtons></mat-paginator> -->
 </div>
+

@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { PaginatedResult } from './../Models/Pagination/PaginatedResult';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Imagem } from '../Models/Imagem';
-import { take } from 'rxjs/operators';
+import { map, take, catchError } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -24,10 +25,36 @@ export class ImagemService {
      return this.http.get<Imagem[]>(apiUrl).pipe(take(1));
   }
 
-  getAllImagensByUsuarioId(usuarioId: number): Observable<Imagem[]> {
+ /* getAllImagensByUsuarioId(usuarioId: number): Observable<Imagem[]> {
+      const apiUrl = `${environment.urlApi}Imagens/GetAllImagensByUsuarioId/${usuarioId}`;
+      return this.http.get<Imagem[]>(apiUrl).pipe(take(1));
+  } */
+
+  getAllImagensByUsuarioId(usuarioId: number, page?: number, itemsPerPage?: number): Observable<PaginatedResult<Imagem[]>> {
+    const paginatedResult: PaginatedResult<Imagem[]> = new PaginatedResult<Imagem[]>();
+
+    let params = new HttpParams;
+
+    if(page !== null && itemsPerPage !== null) {
+        params = params.append('pageNumber', page.toString());
+        params = params.append('pageSize', itemsPerPage.toString())
+    }
+
     const apiUrl = `${environment.urlApi}Imagens/GetAllImagensByUsuarioId/${usuarioId}`;
-    return this.http.get<Imagem[]>(apiUrl).pipe(take(1));
-  }
+
+    return this.http
+               .get<Imagem[]>(apiUrl, {observe: 'response', params })
+               .pipe(
+                  take(1),
+                  map((response) => {
+                    paginatedResult.result = response.body
+                    if(response.headers.has('Pagination')) {
+                      paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+                    }
+
+                    return paginatedResult;
+                  }));
+}
 
   getImagemById(id: number): Observable<Imagem> {
      const apiUrl = `${environment.urlApi}Imagens/GetImageById/${id}`;

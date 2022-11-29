@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/Services/usuario.service';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -51,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     }, (error) => {
       this.bLoading = false;
-       if(error.status === 401){
+       if(error.status === 401 || error.status === 500){
         this.snackBar.open('Usuário e/ou senha incorretos.', null, {
           duration: 2000,
           panelClass: ['snackbar-error'],

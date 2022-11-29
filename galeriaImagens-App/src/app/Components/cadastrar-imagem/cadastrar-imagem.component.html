@@ -1,3 +1,4 @@
+<app-menu></app-menu>
 <div *ngIf="!formulario">
   <mat-progress-bar mode="buffer"></mat-progress-bar>
 </div>
@@ -14,13 +15,13 @@
         <img hidden id="foto" src="#" width="300" height="200" />
       </div>
       <ng-template #tipoDiferente></ng-template>
-      <input hidden type="file" #fileInput name="foto" formControlName="URLImagem" required (change)="onFileChange($event)" />
+      <input hidden type="file" #fileInput name="nome" formControlName="nome" required (change)="onFileChange($event)" />
       <br/><br/>
        <button type="button" mat-stroked-button color="primary" (click)="fileInput.click()">
        Escolha a imagem
       </button>
-      <div id="campo" *ngIf="formulario.get('URLImagem').hasError('required') &&
-             formulario.get('URLImagem').touched" class="invalid-feedback">
+      <div id="campo" *ngIf="formulario.get('nome').hasError('required') &&
+             formulario.get('nome').touched" class="invalid-feedback">
             O campo de imagem é obrigatório
     </div><br><br>
       <br><br>

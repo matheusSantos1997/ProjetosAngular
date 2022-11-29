@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  tokenUsuarioLogado = localStorage.getItem('TokenUsuarioLogado');
-  usuarioId = localStorage.getItem('UsuarioId');
+
   emailUsuarioLogado = localStorage.getItem('EmailUsuarioLogado');
 
   constructor(private usuarioService: UsuarioService, private router: Router) {}
@@ -22,7 +21,6 @@ export class MenuComponent implements OnInit {
   logout(): void {
     this.usuarioService.logout();
     this.router.navigateByUrl('usuario/login');
-    location.reload();
   }
 
 
