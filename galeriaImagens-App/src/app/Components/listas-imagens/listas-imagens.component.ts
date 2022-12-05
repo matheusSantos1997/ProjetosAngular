@@ -67,7 +67,7 @@ export class ListasImagensComponent implements OnInit {
       let page = event.pageIndex;
       let size = event.pageSize;
 
-      page = page + 1;
+     page = page + 1;
 
        this.pagination.currentPage = page;
 
@@ -88,7 +88,7 @@ export class ListasImagensComponent implements OnInit {
 
             this.imagens.data = dados.result;
             this.pagination = dados.pagination;
-
+            this.paginator.firstPage();
 
               this.imagens.data.forEach(i => {
                 if(i.nome !== '') {
