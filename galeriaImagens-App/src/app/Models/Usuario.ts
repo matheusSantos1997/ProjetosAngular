@@ -6,5 +6,4 @@ export class Usuario {
     profissao: string;
     nomeUsuario: string;
     senha: string;
-    token?: string;
 }

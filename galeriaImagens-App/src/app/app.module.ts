@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
@@ -18,6 +18,7 @@ import { DialogExclusaoImagemComponent } from './Components/listas-imagens/dialo
 import { LoginComponent } from './Components/login/login.component';
 import { CadastroComponent } from './Components/cadastro/cadastro.component';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthorizationInterceptor } from './interceptor/authorization-Interceptor';
 
 export function PegarTokenUsuario(){
   return localStorage.getItem('TokenUsuarioLogado');
@@ -57,7 +58,11 @@ export function PegarTokenUsuario(){
     )
   ],
   providers: [
-
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthorizationInterceptor,
+      multi: true
+   }
   ],
   bootstrap: [AppComponent]
 })

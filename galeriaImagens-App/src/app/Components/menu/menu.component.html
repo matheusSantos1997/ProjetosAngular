@@ -1,45 +1,12 @@
 <mat-toolbar fxLayout="row" color="primary">
   <span style="cursor: pointer;" fxFlex routerLink="/dashboard">Galeria de imagens</span>
 
-  <!-- <ng-container>
-    <button mat-button fxHide.xs routerLink="/usuario/login">
-      <mat-icon>input</mat-icon>
-      &nbsp;Login
-   </button>
-
-   <button mat-button fxHide.xs routerLink="/usuario/cadastro">
-      <mat-icon>person_add</mat-icon>
-      &nbsp;Cadastro
-   </button>
-  </ng-container> -->
-
    <ng-container *ngIf="emailUsuarioLogado">
    <button mat-button fxHide.xs (click)="logout()">
     <mat-icon>logout</mat-icon>
     &nbsp;Sair
   </button>
   </ng-container>
-
-   <!-- <button mat-icon-button [matMenuTriggerFor]="dropMenu" fxHide fxShow.xs>
-       <mat-icon>menu</mat-icon>
-   </button>
-
-   <mat-menu #dropMenu="matMenu">
-    <button mat-button routerLink="/usuario/login">
-        <mat-icon>input</mat-icon>
-        &nbsp;Login
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-button routerLink="/usuario/cadastro">
-       <mat-icon>person_add</mat-icon>
-       &nbsp;Cadastro
-    </button>
-    <mat-divider></mat-divider>
-    <button mat-button>
-      <mat-icon>exit_to_app</mat-icon>
-      &nbsp;Sair
-     </button>
-  </mat-menu> -->
 
 </mat-toolbar>
 

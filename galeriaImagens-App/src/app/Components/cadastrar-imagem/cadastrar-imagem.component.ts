@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { HTMLInputEvent } from 'src/app/GenericInterfaces/html-input-event';
 import { Imagem } from 'src/app/Models/Imagem';
-import { ImagemService } from 'src/app/services/imagem.service';
+import { ImagemService } from '../../Services/imagem.service';
 
 @Component({
   selector: 'app-cadastrar-imagem',

@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ImagemService } from 'src/app/services/imagem.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImagemService } from 'src/app/Services/imagem.service';
 
 @Component({
   selector: 'app-dialog-exclusao-imagem',

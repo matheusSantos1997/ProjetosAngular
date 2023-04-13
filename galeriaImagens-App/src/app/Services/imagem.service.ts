@@ -4,13 +4,13 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Imagem } from '../Models/Imagem';
-import { map, take, catchError } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Authorization': `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
-  })
-};
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Authorization': `Bearer ${localStorage.getItem('TokenUsuarioLogado')}`
+//   })
+// };
 
 @Injectable({
   providedIn: 'root'
@@ -63,16 +63,16 @@ export class ImagemService {
 
   postUpload(file: FormData): Observable<Imagem> {
       const apiUrl = `${environment.urlApi}Imagens/UploadImagem`;
-      return this.http.post<Imagem>(apiUrl, file, httpOptions);
+      return this.http.post<Imagem>(apiUrl, file);
   }
 
   putUpload(id: number, file: FormData): Observable<Imagem> {
     const apiUrl = `${environment.urlApi}Imagens/UpdateImagem/${id}`;
-    return this.http.put<Imagem>(apiUrl, file, httpOptions);
+    return this.http.put<Imagem>(apiUrl, file);
   }
 
   deleteUpload(id: number): Observable<Imagem> {
      const apiUrl = `${environment.urlApi}Imagens/DeleteImagem/${id}`;
-     return this.http.delete<Imagem>(apiUrl, httpOptions);
+     return this.http.delete<Imagem>(apiUrl);
   }
 }

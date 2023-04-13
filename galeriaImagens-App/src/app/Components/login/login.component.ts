@@ -39,8 +39,8 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('TokenUsuarioLogado', tokenUsuarioLogado);
 
       this.bLoading = false;
-      this.router.navigateByUrl('imagens');
-      this.snackBar.open('Bem vindo usuário.', null, {
+      this.router.navigateByUrl('/');
+      this.snackBar.open(`Bem vindo usuário ${response.emailUsuarioLogado}`, null, {
         duration: 2000,
         panelClass: ['snackbar-success'],
         horizontalPosition: 'right',
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
 
     }, (error) => {
       this.bLoading = false;
-       if(error.status === 401 || error.status === 500){
+       if(error.status === 401){
         this.snackBar.open('Usuário e/ou senha incorretos.', null, {
           duration: 2000,
           panelClass: ['snackbar-error'],

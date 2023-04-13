@@ -1,4 +1,4 @@
-import { ImagemService } from './../../services/imagem.service';
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Imagem } from 'src/app/Models/Imagem';
 import { MatTableDataSource } from '@angular/material/table';
@@ -6,6 +6,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExclusaoImagemComponent } from './dialog-exclusao-imagem/dialog-exclusao-imagem.component';
 import { Pagination } from 'src/app/Models/Pagination/Pagination';
+import { ImagemService } from '../../Services/imagem.service';
 
 @Component({
   selector: 'app-listas-imagens',
@@ -67,13 +68,13 @@ export class ListasImagensComponent implements OnInit {
       let page = event.pageIndex;
       let size = event.pageSize;
 
-     page = page + 1;
+      page = page + 1;
 
-       this.pagination.currentPage = page;
+      this.pagination.currentPage = page;
 
-       this.pagination.itemsPerPage = size;
-       this.pagination.totalItems = event.length;
-       this.getAllImagensByUsuarioId();
+      this.pagination.itemsPerPage = size;
+      this.pagination.totalItems = event.length;
+      this.getAllImagensByUsuarioId();
     }
 
   abrirDialog(id: number): void {
@@ -86,9 +87,12 @@ export class ListasImagensComponent implements OnInit {
            // debugger;
            this.imagemService.getAllImagensByUsuarioId(this.usuarioId, this.pagination.currentPage, this.pagination.itemsPerPage).subscribe((dados) => {
 
-            this.imagens.data = dados.result;
-            this.pagination = dados.pagination;
-            this.paginator.firstPage();
+              this.imagens.data = dados.result;
+              this.pagination = dados.pagination;
+
+              this.paginator.previousPage();
+
+
 
               this.imagens.data.forEach(i => {
                 if(i.nome !== '') {
