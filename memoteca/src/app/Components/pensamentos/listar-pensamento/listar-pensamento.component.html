@@ -1,0 +1,47 @@
+<section class="container">
+<header class="header d-flex">
+  <div class="buscar-pensamentos">
+    <input type="search" class="filtro" placeholder="O que você procura ?" autofocus [formControl]="autoCompleteInput">
+    <img src="/assets/imagens/lupa-azul.png" alt="Lupa Azul" height="25">
+    <div *ngFor="let conteudo of conteudos | async">
+      {{conteudo}}
+   </div>
+  </div>
+  <h2 class="ff-inter">{{titulo}}</h2>
+  <div class="botoes">
+    <button class="botao" (click)="recarregarComponente()">Meu Mural</button>
+    <button class="botao" (click)="listarFavoritos()">Meus Favoritos</button>
+    <button routerLink="/criarPensamento" class="botao">Novo pensamento</button>
+  </div>
+
+</header>
+<div class="mural">
+  <ng-container *ngIf="listaPensamentos; else semPensamentos">
+    <ng-container *ngFor="let pensamento of listaPensamentos">
+      <app-pensamento [pensamento]="pensamento" [listaFavoritos]="listaFavoritos"></app-pensamento>
+    </ng-container>
+    <br>
+    <ng-container *ngIf="this.favoritos === true; else todosPensamentosPaginados">
+        <app-botao-carregar-mais [haMaisPensamentos]="haMaisPensamentos" (click)="carregarMaisPensamentosFavoritos()"></app-botao-carregar-mais>
+    </ng-container>
+    <ng-template #todosPensamentosPaginados>
+      <app-botao-carregar-mais [haMaisPensamentos]="haMaisPensamentos" (click)="carregarMaisPensamentos()"></app-botao-carregar-mais>
+    </ng-template>
+  </ng-container>
+</div>
+</section>
+
+<ng-template #semPensamentos>
+ <div class="ff-inter sem-pensamentos">
+  <p>Ainda não há pensamentos cadastrados</p>
+</div>
+</ng-template>
+
+<ng-template #semPensamentosFavoritos>
+  <div class="ff-inter sem-pensamentos">
+    <p>nenhum favorito!</p>
+  </div>
+</ng-template>
+
+
+
