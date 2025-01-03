@@ -1,0 +1,38 @@
+@if(media >= 7) {
+   <p>Aprovado(a)</p>
+}
+@else if (media >= 5) {
+  <p>Em Exame</p>
+}
+@else {
+  <p>Reprovado(a)</p>
+}
+
+@for (n of nomes; track $index) {
+  <p>{{$index}} - {{n}}</p>
+}
+
+@switch (linguagem) {
+  @case ('HTML') {
+    <p>Linguagem de marcação</p>
+  }
+  @case ('CSS') {
+    <p>Linguagem de estilização</p>
+  }
+  @case ('JS') {
+    <p>Linguagem de programação</p>
+  }
+  @default {
+    <p>Linguagem não encontrada!</p>
+  }
+}
+
+<button mat-flat-button (click)="showModal()">Abrir Modal</button>
+
+@if(isModalVisible){
+  <app-componente-filho [title]="'Título do modal'"
+                        [message]="'Mensagem de exemplo'"
+                        (closeModal)="closeModal()">
+  </app-componente-filho>
+}
+
